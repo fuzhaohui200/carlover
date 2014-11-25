@@ -1,4 +1,4 @@
-package com.shine.automotive.web;
+package com.shine.automotive.controller;
 
 /**
  * Created by boka on 14-11-25.
