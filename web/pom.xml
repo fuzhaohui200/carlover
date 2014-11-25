@@ -11,7 +11,7 @@
     <packaging>war</packaging>
     <artifactId>web</artifactId>
     <properties>
-        <spring-version>4.0.5.RELEASE</spring-version>
+        <spring-version>4.1.2.RELEASE</spring-version>
     </properties>
 
     <dependencies>
