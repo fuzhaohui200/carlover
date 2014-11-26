@@ -13,6 +13,7 @@ public class ShopCart {
     private String productName; // 产品名称
     private String productDesc; // 产品描述
     private String productPrice; // 购买产品价格
+    private int count; // 购买数量
     private Date createTime; // 创建时间
 
 }
