@@ -9,10 +9,15 @@ import java.util.Date;
 public class User {
 
     private String userId;
-    private String username;
-    private String password;
-    private String phone;
-    private Date createTime;
-    private Date updateTime;
+    private String username; // 用户名
+    private String password; // 密码
+    private String avater; // 头像
+    private String phone; // 手机
+    private String email; // 邮箱
+    private String qq; // QQ
+    private String weibo; // 微博
+    private String weixin; // 微信
+    private Date createTime; // 创建时间
+    private Date updateTime; // 更改时间
 
 }

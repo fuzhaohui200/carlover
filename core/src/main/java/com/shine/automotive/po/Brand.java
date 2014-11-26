@@ -9,8 +9,11 @@ import java.util.Date;
 public class Brand {
 
     private String branchId;
-    private String branchName;
-    private String productName;
-    private String productCountry;
-    private Date marketDate; //上市时间
+    private String branchName;  // 品牌名称
+    private String productName; // 生产厂商
+    private String productCountry; // 生产国家
+    private String seriesName; // 系列
+    private String seriesNum; // 系列编号
+    private String branchNum; // 品牌车型编号
+    private Date marketDate; // 上市时间
 }

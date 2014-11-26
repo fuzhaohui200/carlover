@@ -9,8 +9,8 @@ import java.util.Date;
 public class CarRecord {
 
     private String carRecordId;
-    private String carId;
-    private String shopId;
+    private String userId;
+    private String storeId;
     private Date createTime;
 
 }
