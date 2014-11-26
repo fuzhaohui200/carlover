@@ -9,3 +9,7 @@ release.properties
 
 .idea/
 *.iml
+
+
+web/web.iml
+core/core.iml

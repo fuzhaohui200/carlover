@@ -1,0 +1,391 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>榴莲旅行</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/raw.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/tour.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/jquery-ui-1.10.4.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/siena.datepicker.css">
+    <style type="text/css">
+    .l-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 20;
+        -webkit-transform: translateZ(0);
+        margin-bottom: 20px;
+    }
+    .l-body {
+        position: relative;
+        margin-top: 76px;
+    }
+    [ms-controller]{
+        display: none;
+    }
+    </style>
+</head>
+
+<body class="ll-skin-siena" ms-controller="index">
+    <div class="body-wrapper">
+    <div class="l-header" ms-controller="header">
+        <span class="app-download">App</span>
+        <div>
+            <a href="index.html" class="logo"></a>
+            <div class="raw-menu">
+                <ul>
+                    <li class="selected"><a href="index.html">主页</a><span ms-visible="complainCount>0">{{complainCount}}</span>
+                    </li>
+                    <li><a href="routes.html">线路</a><div ms-visible="empty===1&&routeempty==1"  style="position:absolute;top:60px;left:32px;width:222px;height:46px;background:url(images/init.png)"></div>
+                    </li>
+                    <li><a href="guiders.html">导游</a><div ms-visible="empty===1&&routeempty==0&&guiderempty==1"  style="position:absolute;top:60px;right:32px;width:228px;height:46px;background:url(images/init7.png)"></div>
+                    </li>
+                    <li><a href="tourist.html">统计</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="position:relative;display:inline-block;"><a class="raw-button open-group" ms-click="openGroup(null)">开团</a><div ms-visible="empty===1&&routeempty==0&&guiderempty==0"  style="position:absolute;top:50px;right:50%;width:272px;height:46px;background:url(images/init8.png)"></div></div>
+            <span class="logout">
+                <span><a class="span" href="account.html" target="_blank">{{userName}}</a></span>
+                <a title="退出" ms-click="logout"></a>
+            </span>
+            <a class="login"></a>
+        </div>
+    </div>
+    <div class="l-body" ms-visible="detailShowing==0&&empty===0">
+        <div class="l-search">
+            <span class="raw-ddl" ms-class-1="expanded:search3_expanded" ms-blur="search3_show(false)" tabIndex="1" >
+                <span class="raw-ddl-text" ms-click="search3_show">{{search3_text}}</span><i class="raw-ddl-icon" ms-click="search3_show"></i>
+                <ul class="raw-ddl-panel">
+                    <li ms-click="search3_select('最新创建','0')">最新创建</li>
+                    <li ms-click="search3_select('最新开团','1')">最新开团</li>
+                    <li ms-click="search3_select('最多人数','2')">最多人数</li>
+                    <li ms-click="search3_select('最少人数','3')">最少人数</li>
+                </ul>
+            </span>
+            <span class="raw-ddl" style="float:right;width:60px;" ms-blur="search2_show(false)" tabIndex="1" ms-class-1="expanded:search2_expanded">
+                <span class="raw-ddl-text" ms-click="search2_show">{{search2_text}}</span><i class="raw-ddl-icon" ms-click="search2_show"></i>
+                <ul class="raw-ddl-panel">
+                    <li ms-click="search2_select('所有团','0')">所有团</li>
+                    <li ms-click="search2_select('进行团','1')">进行团</li>
+                    <li ms-click="search2_select('全新团','2')">全新团</li>
+                    <li ms-click="search2_select('过期团','3')">过期团</li>
+                </ul>
+            </span>
+            <span class="raw-ddl-search">
+                <span class="raw-ddl" ms-class-1="expanded:search1_expanded" ms-blur="search1_show(false)" tabIndex="1"  style="width:50px;">
+                    <span class="raw-ddl-text" ms-click="search1_show">{{search1_text}}</span><i class="raw-ddl-icon" ms-click="search1_show"></i>
+                    <ul class="raw-ddl-panel">
+                        <li ms-click="search1_select('名称','tripName')">名称</li>
+                        <li ms-click="search1_select('导游','guideName')">导游</li>
+                    </ul>
+                </span>
+                <span class="raw-search">
+                    <input type="text" ms-duplex="searchParam" ms-keypress="search"><i class="raw-search-icon" ms-click="search"></i>
+                </span>
+            </span>
+        </div>
+        <div  ms-controller="groups">
+        <div class="raw-cols tour-groups" ms-repeat="groupedModels">
+            <div class="tour-group raw-1-4" ms-class-1="opened:item.status==0"  ms-class-2="ongoing:item.status==1"  ms-class-3="closed:item.status==2" ms-repeat-item="el">
+                <div class="image-wrap">
+                    <img ms-attr-src="item.tripPic||'images/b.jpg'" style="width:100%;height:100%">
+                </div>
+                <div class="top" ms-click="showGroupDetail(item)">
+                    <div class="circle-wrap"></div>
+                    <div class="tour-group-info">
+                        <!-- <div style="font-size:.8em;">团码</div>
+                        <div class="tour-group-code">{{item.code}}</div> -->
+                        <div class="tour-group-name">
+                            <span>{{item.tripName.substr(0, 16)}}</span>
+                        </div>
+                        <div class="tour-group-guider">
+                            <span>{{item.date}} 开团</span>
+                        </div>
+                        <div style="text-align:center;"><!-- <a class="people"></a> --></div>
+                    </div>
+                </div>
+                <div class="tour-group-status">
+                    <div>导游：{{item.guiderName}}</div>
+                    <div>
+                        <span>{{item.appUserCount}}</span>/{{item.count}} 人
+                    </div>
+                </div>
+            </div>
+            <div class="raw-1-1 legend"></div>
+        </div>
+        <div style="text-align:center;"><span style="display:inline-block;width:71px;height:71px;line-height:71px;color:#313f4e;background:url(images/more.png);cursor:pointer;" ms-click="nextPage" ms-visible="pageIndex<pageCount">更多</span></div>
+        </div>
+    </div>
+    <div class="l-body raw-cols group-route-detail" ms-visible="detailShowing==1" >
+        <div class="raw-1-2 left">
+            <div style="padding:0 0 30px"><a ms-click="back2List" class="back-list">返回团列表</a>
+            </div>
+            <div class="image">
+                <img ms-attr-src="currentGroup.tripPic||'images/b.jpg'">
+                <div class="status" ms-class-1="opened:currentGroup.status==0"  ms-class-2="ongoing:currentGroup.status==1"  ms-class-3="closed:currentGroup.status==2">{{statusText(currentGroup.status)}}</div>
+            </div>
+            <div class="group-detail-title">{{currentGroup.tripName}}</div>
+            <div class="group-detail-time">日期：{{currentGroup.date}} 团码：{{currentGroup.code}}</div>
+            <div class="group-detail-action"><i class="edit" ms-click="openGroup(currentGroup)">编辑</i>|&nbsp;<i class="delete" ms-click="deleting('deletinggroup',currentGroup.id)">删除</i>
+            </div>
+            <div class="group-detail-field">预计人数：{{currentGroup.count}}人</div>
+            <div class="group-detail-field">App用户数：{{currentGroup.appUserCount}}人</div>
+            <div class="group-detail-field">导游：{{currentGroup.guiderName}}</div>
+            <div class="group-detail-field">游客奖励：{{currentGroup.reward}}元/人</div>
+        </div>
+        <div class="raw-1-2 right">
+            <div class="raw-menu">
+                <ul>
+                    <li ms-class="raw-menu-item-selected:detailTabIndex==0" ms-click="switchTab(0)"><a>成员</a>
+                    </li>
+                    <li ms-class="raw-menu-item-selected:detailTabIndex==1" ms-click="switchTab(1)"><a>行程</a>
+                    </li>
+                    <li ms-class="raw-menu-item-selected:detailTabIndex==2" ms-click="switchTab(2)"><a>公告</a>
+                    </li>
+                    <li ms-class="raw-menu-item-selected:detailTabIndex==3" ms-click="switchTab(3)"><a>评价</a>
+                    </li>
+                    <li ms-class="raw-menu-item-selected:detailTabIndex==4" ms-click="switchTab(4)"><a>投诉</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="members" ms-visible="detailTabIndex==0" ms-controller="tourist">
+                <div>
+
+                </div>
+                <table class="raw-table">
+                    <colgroup>
+                        <col width="20px"></col>
+                        <col width="80px"></col>
+                        <col></col>
+                        <col width="120px"></col>
+                        <col width="70px"></col>
+                        <col></col>
+                        <col width="50px"></col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <span class="named-input">
+                                    <input placeholder="姓名" ms-focus="edit(null)" style="width:60px" ms-duplex="realName">
+                                </span>
+                            </th>
+                            <th>
+                                <span class="named-input">
+                                    <input placeholder="身份证" ms-focus="edit(null)"  ms-duplex="idCard">
+                                </span>
+                            </th>
+                            <th>
+                                <span class="named-input">
+                                    <input placeholder="手机号"  data-validate="number" ms-focus="edit(null)"   style="width:100px" ms-duplex="phone">
+                                </span>
+                            </th>
+                            <th>
+                                <span class="named-input" style="padding:0 0 1px 0">
+                                    <span class="raw-ddl" style="width:50px;text-align:left;border:0;border-radius:0;font-weight:normal" ms-class-1="expanded:gender_expanded">
+                                        <span class="raw-ddl-text">{{gender_text}}</span><i class="raw-ddl-icon" ms-click="gender_show"></i>
+                                        <ul class="raw-ddl-panel">
+                                            <li ms-click="gender_select('未知',-1)">未知</li>
+                                            <li ms-click="gender_select('男',0)">男</li>
+                                            <li ms-click="gender_select('女',1)">女</li>
+                                        </ul>
+                                    </span>
+                                </span>
+                            </th>
+                            <th>
+                                <span class="named-input">
+                                    <input placeholder="备注" ms-focus="edit(null)" style="width:160px;"  ms-duplex="remark">
+                                </span>
+                            </th>
+                            <th></th>
+                        </tr>
+                        <tr ms-visible="editing">
+                            <td colspan="7">
+                                <div style="text-align:center;color:#f00;font-size:.8em;">{{validateMsg}}</div>
+                                <a class="border-button" ms-click="cancelEdit">取消</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="raw-button" ms-click="create">确认</a>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ms-repeat="models">
+                            <td ms-class-1="appuser:el.appUser===1"></td>
+                            <td>{{el.user.realName}}</td>
+                            <td>{{el.user.idCard}}</td>
+                            <td>{{el.user.phone}}</td>
+                            <td>{{genderText(el.user.gender)}}</td>
+                            <td>{{el.user.remark}}</td>
+                            <td class="last" style="padding:0"><i class="delete" title="删除" ms-click="deleting('deletingtourist',{name:el.user.realName, gid:currentGroup.id, uid:el.user.id,index: $index})"></i><!-- <i class="update" title="修改"  ms-click="edit(el)"></i> --></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="route-detail" ms-visible="detailTabIndex==1">
+                <div class="route-detail-desc" ms-html="decodeURIComponent(currentRoute.description || '')"></div>
+                <div class="table-wrap" ms-repeat="currentRoute.tripDays">
+                        <div><a></a><div>D{{$index+1}}</div><span>{{el.title || ''}}</span></div>
+                        <table>
+                            <colgroup>
+                                <col style="width:50px"></col>
+                                <col style="width:46px"></col>
+                                <col></col>
+                            </colgroup>
+                            <tbody>
+                                <tr class="schedule-point" ms-repeat-item="el.tripPlans">
+                                    <td class="time">
+                                        <div>{{item.startTime}}</div>
+                                        <div style="font-size:.8em;"></div>
+                                    </td>
+                                    <td class="category"><i ms-attr-class="cssClass(item.type)"></i></td>
+                                    <td>
+                                        <div class="name-address">{{item.address}} {{item.title}}</div>
+                                        <div class="info" ms-html="decodeURIComponent(item.description)" ms-visible="!!item.description">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            <div class="bulletin" ms-visible="detailTabIndex==2">
+                <div><i class="horn" ms-click="createAnnounce">发布</i></div>
+                <div class="raw-cols"   ms-repeat="currentAnnounces">
+                    <div class="raw-21-24">
+                        <div class="notice">
+                            <div class="title">{{el.title}}</div>
+                            <div class="content">{{el.data}}</div>
+                            <div class="time">{{el.date}}</div>
+                        </div>
+                    </div>
+                    <div class="raw-3-24"><div class="avatar"></div><div>{{el.realname||'匿名'}}</div></div>
+                </div>
+                <div class="raw-cols"   ms-visible="currentAnnounces.length==0">
+                    <div class="raw-20-24">
+                        <div>暂无公告
+                        </div>
+                    </div>
+                    <div class="raw-3-24"><div class="avatar"></div></div>
+                </div>
+            </div>
+            <div class="bulletin" ms-visible="detailTabIndex==3">
+                <div class="raw-cols"  ms-repeat="currentComments">
+                    <div class="raw-21-24">
+                        <div class="notice">
+                            <div class="content"><span ms-repeat-item="el.guideComments">导游-{{item.realName}}：{{item.score}}星&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线路：{{el.tripScore}}星&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;住宿：{{el.hotelScore}}星</div>
+                            <div class="content">{{el.comments}}</div>
+                            <div class="time">{{el.createTime}}</div>
+                        </div>
+                    </div>
+                    <div class="raw-3-24"><div class="avatar"></div><div>{{el.realName||'匿名'}}</div></div>
+                </div>
+                <div class="raw-cols"   ms-visible="currentComments.length==0">
+                    <div class="raw-20-24">
+                        <div>暂无评价
+                        </div>
+                    </div>
+                    <div class="raw-3-24"><div class="avatar"></div></div>
+                </div>
+            </div>
+
+            <div class="bulletin" ms-visible="detailTabIndex==4">
+                <div class="raw-cols" ms-repeat="currentComplains">
+                    <div class="raw-21-24">
+                        <div class="notice">
+                            <div class="content">{{el.comment}}</div>
+                            <div class="time">{{el.date}}</div>
+                        </div>
+                    </div>
+                    <div class="raw-3-24"><div class="avatar"></div><div>{{el.realname||'匿名'}}</div></div>
+                </div>
+                <div class="raw-cols"   ms-visible="currentComplains.length==0">
+                    <div class="raw-20-24">
+                        <div>暂无投诉
+                        </div>
+                    </div>
+                    <div class="raw-3-24"><div class="avatar"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="l-body" ms-visible="detailShowing==2&&empty===0" ms-controller="complains">
+        <div style="padding:0 0 30px"><a ms-click="back2List" class="back-list">返回团列表</a>
+            </div>
+        <div class="complain " ms-repeat="models" ms-class-1="opened:el.opened" ms-class-2="isnew:el.isNew">
+            <div class="complain-title" ms-click="toggleDown(el)"><span class="comment">{{el.comment}}</span><span class="date">{{el.date||""}}</span></div>
+            <div class="sub-content">
+                <div class="complain-group"><span>参团：</span><a ms-attr-href="'index.html#group/'+el.tripteam.id" target="_blank">{{el.tripteam.tripName||""}}</a><span class="author">来自：{{el.realname||""}}  {{el.mobliePhone}}</span></div>
+                <div class="complain-guider"><span>导游：</span><a ms-repeat-item="el.tripteam.guide" ms-attr-href="'guiders.html#guider/'+item.id" target="_blank">{{item.name}}</a>
+                </div>
+                <div><span style="float:right;cursor:pointer;" ms-click="toggleUp(el)">收起</span></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="mask open-tour-group"  ms-click="globalClick" ms-visible="groupOpening" ms-controller="newGroup" ms-include-src="'template/newGroup.html'" data-include-rendered="loaded">
+    </div>
+
+    <div class="mask delete-confirm-panel" ms-visible="deletingConfirm" ms-controller="deleteConfirm">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="content-header"><i class="mask-close" title="关闭" ms-click="deletingEnd"></i>
+            </div>
+            <div class="content-body">
+                <div class="confirm-msg" ms-html="msg"></div>
+                <div class="erromsg">{{returnMsg}}</div>
+                <div class="confirm-buttons"><a class="border-button" ms-click="deletingEnd">取消</a>        <a class="border-button" ms-click="confirm">确定</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mask create-tour-announce" ms-visible="announceCreating" ms-controller="announces">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="content-header"><i class="mask-close" title="关闭" ms-click="closeCreateAnnounce"></i>
+            </div>
+            <div class="content-body">
+                <div class="fields">
+                    <span class="named-input">
+                        <span>公告标题</span>
+                        <input placeholder="不超过10个字" ms-duplex="title" maxlength="10">
+                    </span>
+                </div>
+                <div class="fields">
+                    <div style="height:29px;line-height:29px;font-size:.8em;">
+                        <span>公告内容</span>
+                    </div>
+                    <textarea id="editor3" ms-duplex="data" ></textarea>
+                </div>
+                <div class="validation">{{validateMsg}}</div>
+            </div>
+            <div class="content-btn" ms-click="create"></div>
+        </div>
+    </div>
+
+    <div id="emptyinit" ms-visible="empty===1" style="position:relative;top:76px;background:url(images/init1.png) no-repeat 50% 50%;"></div>
+
+    <div class="l-footer" style="position:relative;margin-top:20px;" ms-visible="empty===0 || empty===1">
+    <div class="complain-notice" ms-visible="detailShowing<2&&complainCount!=0"><span>有</span><a href="#complains">{{complainCount}}</a><span>个新投诉</span></div>
+    <div class="nocomplain-notice" ms-visible="detailShowing<2&&complainCount===0">没有任何新投诉</div></div>
+    </div><div class="qrcode"><div><div style="font-size:16px;">榴莲旅行移动端</div>
+<div style="padding:20px 0;font-size:13px;">手机扫描二维码，下载相应客户端</div>
+<div style="padding:0 0 5px 0;font-size:13px;">游客端</div>
+<div><img src="QR-web.png" style="width:140px;height:140px;"></div><div style="padding:40px 0 5px 0;font-size:13px;">导游端</div>
+<div><img src="QR-web2.png" style="width:140px;height:140px;"></div></div></div>
+
+    <script src="javascripts/lib/json2.js"></script>
+    <script src="javascripts/lib/jquery-1.10.2.min.js"></script>
+    <script src="javascripts/lib/jquery-ui-1.10.4.min.js"></script>
+    <script src="javascripts/lib/jquery.ui.datepicker-zh.js"></script>
+    <script src="javascripts/lib/a.min.js"></script>
+    <script src="javascripts/index.min.js"></script>
+    <script type="text/javascript">
+    </script>
+</body>
+
+</html>

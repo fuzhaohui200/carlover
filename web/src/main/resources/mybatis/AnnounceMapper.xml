@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Announce">
+	<resultMap type="Announce"  id="announce" >
+		<id property="id" column="id"  javaType="java.lang.String" />
+		<result property="title" column="title" javaType="java.lang.String" />
+		<result property="content" column="content" javaType="java.lang.String" />
+		<result property="tripId" column="trip_id" javaType="java.lang.String" />
+		<result property="createTime" column="createTime" javaType="java.util.Date" />
+	</resultMap>
+	
+
+	<insert id="saveAnnounce" parameterType="Announce">
+		insert into
+		announce(id, trip_id, title, content, createTime) values (
+		#{id}, #{tripId},#{title}, #{content}, #{createTime})
+	</insert>
+	
+</mapper>

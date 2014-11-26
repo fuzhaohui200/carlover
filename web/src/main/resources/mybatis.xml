@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+    "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 公共的MyBatis全局配置 -->
+	<properties>
+		<property name="dialect" value="mysql"/>
+	</properties>
+	<settings>
+	    <setting name="cacheEnabled" value="true"/>
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="BigInteger" type="java.math.BigInteger"/>
+		<typeAlias type="com.mapabc.newland.core.po.Announce" alias="Announce"/>
+		<typeAlias type="com.mapabc.newland.core.po.Complain" alias="Complain"/>
+		<typeAlias type="com.mapabc.newland.core.po.GuideCheck" alias="GuideCheck"/>
+		<typeAlias type="com.mapabc.newland.core.po.GuideComments" alias="GuideComments"/>
+		<typeAlias type="com.mapabc.newland.core.po.Guide" alias="Guide"/>
+		<typeAlias type="com.mapabc.newland.core.po.Report" alias="Report"/>
+		<typeAlias type="com.mapabc.newland.core.po.TeamGuide" alias="TeamGuide"/>
+		<typeAlias type="com.mapabc.newland.core.po.CompanyGuide" alias="CompanyGuide"/>
+		<typeAlias type="com.mapabc.newland.core.po.CompanyTourist" alias="companyTourist"/>
+		<typeAlias type="com.mapabc.newland.core.po.TeamTourist" alias="TeamTourist"/>
+		<typeAlias type="com.mapabc.newland.core.po.Tourist" alias="Tourist"/>
+		<typeAlias type="com.mapabc.newland.core.po.TravelCompany" alias="TravelCompany"/>
+		<typeAlias type="com.mapabc.newland.core.po.TravelNotes" alias="TravelNotes"/>
+		<typeAlias type="com.mapabc.newland.core.po.Trip" alias="Trip"/>
+		<typeAlias type="com.mapabc.newland.core.po.TripDay" alias="TripDay"/>
+		<typeAlias type="com.mapabc.newland.core.po.TripPlan" alias="TripPlan"/>
+		<typeAlias type="com.mapabc.newland.core.po.TripTeam" alias="TripTeam"/>
+		<typeAlias type="com.mapabc.newland.core.po.User" alias="User"/>
+		<typeAlias type="com.mapabc.newland.core.po.VersionLink" alias="VersionLink"/>
+	</typeAliases>
+	
+	<plugins>
+		<plugin interceptor="com.mapabc.newland.base.pager.interceptor.PagerInterceptor">
+		</plugin>
+	</plugins>
+</configuration>
