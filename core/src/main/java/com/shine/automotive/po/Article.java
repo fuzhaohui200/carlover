@@ -9,7 +9,7 @@ import java.util.Date;
 public class Article {
 
     private String articleId;
-    private String userId;
+    private String userId; //
     private String title;
     private String content;
     private String mark; // 标签
