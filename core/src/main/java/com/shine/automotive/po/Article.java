@@ -9,12 +9,11 @@ import java.util.Date;
 public class Article {
 
     private String articleId;
-    private String userId; //
-    private String title;
-    private String content;
+    private String userId; // 作者用户ID
+    private String title; // 标题
+    private String content; // 内容
     private String mark; // 标签
-
-    private Date createTime;
-    private Date updateTime;
+    private Date createTime; // 创作时间
+    private Date updateTime; // 修改时间
 
 }

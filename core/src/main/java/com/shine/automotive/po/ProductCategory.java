@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by boka on 14-11-26.
  * 销售产品类别
  */
-public class Category {
+public class ProductCategory {
 
     private String categoryId; //
     private String parentCategoryId; //

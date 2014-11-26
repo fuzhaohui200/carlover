@@ -8,9 +8,9 @@ import java.util.Date;
  */
 public class CarRecord {
 
-    private String carRecordId;
-    private String userId;
-    private String storeId;
-    private Date createTime;
+    private String carId; // 车辆ID
+    private String serviceId; // 服务ID
+    private String content; //描述
+    private Date createTime; // 服务时间
 
 }

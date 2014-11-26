@@ -8,11 +8,11 @@ import java.util.Date;
  */
 public class Car {
 
-    private String carId;
-    private String branchId;
-    private String userInfoId;
-    private Date buyTime;
-    private String carNum;
+    private String carId; // 车辆编号
+    private String branchId; // 品牌ID
+    private String userInfoId; // 车主信息ID
+    private Date buyTime; // 购买时间
+    private String carNum; // 车牌号
 
 
 }
