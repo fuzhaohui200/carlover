@@ -6,7 +6,7 @@ package com.shine.automotive.po;
  */
 public class Store {
 
-    private String storeId;
+    private String userId;
     private String headStoreId; // 总店或总部ID
     private String storeName; // 4S店名称
     private String storeAddress; // 4S店详细地址
@@ -20,4 +20,107 @@ public class Store {
     private String tenpay; // 财付通
     private int isOfflineStore; // 是否为实体店
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getHeadStoreId() {
+        return headStoreId;
+    }
+
+    public void setHeadStoreId(String headStoreId) {
+        this.headStoreId = headStoreId;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getStoreAddress() {
+        return storeAddress;
+    }
+
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress;
+    }
+
+    public double getStoreLng() {
+        return storeLng;
+    }
+
+    public void setStoreLng(double storeLng) {
+        this.storeLng = storeLng;
+    }
+
+    public double getStoreLat() {
+        return storeLat;
+    }
+
+    public void setStoreLat(double storeLat) {
+        this.storeLat = storeLat;
+    }
+
+    public String getStorePhone() {
+        return storePhone;
+    }
+
+    public void setStorePhone(String storePhone) {
+        this.storePhone = storePhone;
+    }
+
+    public String getStorePhone2() {
+        return storePhone2;
+    }
+
+    public void setStorePhone2(String storePhone2) {
+        this.storePhone2 = storePhone2;
+    }
+
+    public String getStoreContact() {
+        return storeContact;
+    }
+
+    public void setStoreContact(String storeContact) {
+        this.storeContact = storeContact;
+    }
+
+    public String getStoreCert() {
+        return storeCert;
+    }
+
+    public void setStoreCert(String storeCert) {
+        this.storeCert = storeCert;
+    }
+
+    public String getAlipay() {
+        return alipay;
+    }
+
+    public void setAlipay(String alipay) {
+        this.alipay = alipay;
+    }
+
+    public String getTenpay() {
+        return tenpay;
+    }
+
+    public void setTenpay(String tenpay) {
+        this.tenpay = tenpay;
+    }
+
+    public int getIsOfflineStore() {
+        return isOfflineStore;
+    }
+
+    public void setIsOfflineStore(int isOfflineStore) {
+        this.isOfflineStore = isOfflineStore;
+    }
 }

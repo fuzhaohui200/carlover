@@ -15,4 +15,51 @@ public class ServiceCategory {
     private Date createTime; // 创建时间
     private Date updateTime; // 修改时间
 
+    public String getServiceCategoryId() {
+        return serviceCategoryId;
+    }
+
+    public void setServiceCategoryId(String serviceCategoryId) {
+        this.serviceCategoryId = serviceCategoryId;
+    }
+
+    public String getParentServiceCategoryId() {
+        return parentServiceCategoryId;
+    }
+
+    public void setParentServiceCategoryId(String parentServiceCategoryId) {
+        this.parentServiceCategoryId = parentServiceCategoryId;
+    }
+
+    public String getServiceCategoryName() {
+        return serviceCategoryName;
+    }
+
+    public void setServiceCategoryName(String serviceCategoryName) {
+        this.serviceCategoryName = serviceCategoryName;
+    }
+
+    public String getServiceCategoryDesc() {
+        return serviceCategoryDesc;
+    }
+
+    public void setServiceCategoryDesc(String serviceCategoryDesc) {
+        this.serviceCategoryDesc = serviceCategoryDesc;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }
