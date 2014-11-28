@@ -10,8 +10,6 @@ public class Store {
     private String headStoreId; // 总店或总部ID
     private String storeName; // 4S店名称
     private String storeAddress; // 4S店详细地址
-    private double storeLng; // 经度
-    private double storeLat; // 纬度
     private String storePhone; // 店联系电话
     private String storePhone2; // 备用联系电话
     private String storeContact; // 联系人
@@ -19,6 +17,10 @@ public class Store {
     private String alipay; // 支付宝帐号
     private String tenpay; // 财付通
     private int isOfflineStore; // 是否为实体店
+    private String country; // 国家
+    private String province; // 省
+    private String city; // 市
+    private String district; // 区、县
 
     public User getUser() {
         return user;
@@ -50,22 +52,6 @@ public class Store {
 
     public void setStoreAddress(String storeAddress) {
         this.storeAddress = storeAddress;
-    }
-
-    public double getStoreLng() {
-        return storeLng;
-    }
-
-    public void setStoreLng(double storeLng) {
-        this.storeLng = storeLng;
-    }
-
-    public double getStoreLat() {
-        return storeLat;
-    }
-
-    public void setStoreLat(double storeLat) {
-        this.storeLat = storeLat;
     }
 
     public String getStorePhone() {
@@ -122,5 +108,37 @@ public class Store {
 
     public void setIsOfflineStore(int isOfflineStore) {
         this.isOfflineStore = isOfflineStore;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 }

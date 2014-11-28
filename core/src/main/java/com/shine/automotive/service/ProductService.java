@@ -1,5 +1,6 @@
 package com.shine.automotive.service;
 
+import com.shine.automotive.base.pager.Pager;
 import com.shine.automotive.po.Product;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface ProductService {
     public void deleteProductByCategoryId(String categoryId);
     public List<Product> queryProductByCategoryId(String categoryId);
     public List<Product> queryProductByProductName(String productName);
+
+    public Pager<Product> queryProductByProductCategory(String productCategoryId, int pno, int psize);
 
 }
