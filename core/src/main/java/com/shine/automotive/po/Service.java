@@ -9,10 +9,12 @@ import java.util.Date;
 public class Service {
 
     private String serviceId; // 服务ID
-    private String serviceName; // 服务类别名称
-    private String serviceDesc; // 服务类别描述
+    private String serviceName; // 服务名称
+    private String serviceDesc; // 服务描述
     private Date createTime; // 创建时间
     private Date updateTime; // 修改时间
+
+    private ServiceCategory serviceCategory;
 
     public String getServiceId() {
         return serviceId;
@@ -52,5 +54,13 @@ public class Service {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public ServiceCategory getServiceCategory() {
+        return serviceCategory;
+    }
+
+    public void setServiceCategory(ServiceCategory serviceCategory) {
+        this.serviceCategory = serviceCategory;
     }
 }

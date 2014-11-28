@@ -6,7 +6,7 @@ package com.shine.automotive.po;
  */
 public class Store {
 
-    private String userId;
+    private User user;
     private String headStoreId; // 总店或总部ID
     private String storeName; // 4S店名称
     private String storeAddress; // 4S店详细地址
@@ -20,12 +20,12 @@ public class Store {
     private String tenpay; // 财付通
     private int isOfflineStore; // 是否为实体店
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getHeadStoreId() {

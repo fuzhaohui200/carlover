@@ -9,7 +9,7 @@ import java.util.Date;
 public class Order {
 
     private String orderId; // 编号
-    private String shopCartId; // 购物车ID
+    private ShopCart shopCart; // 购物车ID
     private String userId; // 用户名
     private String remark; //　备注
     private Date createTime; //　创建时间
@@ -22,12 +22,12 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getShopCartId() {
-        return shopCartId;
+    public ShopCart getShopCart() {
+        return shopCart;
     }
 
-    public void setShopCartId(String shopCartId) {
-        this.shopCartId = shopCartId;
+    public void setShopCart(ShopCart shopCart) {
+        this.shopCart = shopCart;
     }
 
     public String getUserId() {

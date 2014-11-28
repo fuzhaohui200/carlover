@@ -12,27 +12,24 @@
 	    <setting name="cacheEnabled" value="true"/>
 	</settings>
 
-	<typeAliases>
+	<typeAliases >
 		<typeAlias alias="BigInteger" type="java.math.BigInteger"/>
-		<typeAlias type="com.mapabc.newland.core.po.Announce" alias="Announce"/>
-		<typeAlias type="com.mapabc.newland.core.po.Complain" alias="Complain"/>
-		<typeAlias type="com.mapabc.newland.core.po.GuideCheck" alias="GuideCheck"/>
-		<typeAlias type="com.mapabc.newland.core.po.GuideComments" alias="GuideComments"/>
-		<typeAlias type="com.mapabc.newland.core.po.Guide" alias="Guide"/>
-		<typeAlias type="com.mapabc.newland.core.po.Report" alias="Report"/>
-		<typeAlias type="com.mapabc.newland.core.po.TeamGuide" alias="TeamGuide"/>
-		<typeAlias type="com.mapabc.newland.core.po.CompanyGuide" alias="CompanyGuide"/>
-		<typeAlias type="com.mapabc.newland.core.po.CompanyTourist" alias="companyTourist"/>
-		<typeAlias type="com.mapabc.newland.core.po.TeamTourist" alias="TeamTourist"/>
-		<typeAlias type="com.mapabc.newland.core.po.Tourist" alias="Tourist"/>
-		<typeAlias type="com.mapabc.newland.core.po.TravelCompany" alias="TravelCompany"/>
-		<typeAlias type="com.mapabc.newland.core.po.TravelNotes" alias="TravelNotes"/>
-		<typeAlias type="com.mapabc.newland.core.po.Trip" alias="Trip"/>
-		<typeAlias type="com.mapabc.newland.core.po.TripDay" alias="TripDay"/>
-		<typeAlias type="com.mapabc.newland.core.po.TripPlan" alias="TripPlan"/>
-		<typeAlias type="com.mapabc.newland.core.po.TripTeam" alias="TripTeam"/>
-		<typeAlias type="com.mapabc.newland.core.po.User" alias="User"/>
-		<typeAlias type="com.mapabc.newland.core.po.VersionLink" alias="VersionLink"/>
+		<typeAlias type="com.shine.automotive.po.Article" alias="Article"/>
+		<typeAlias type="com.shine.automotive.po.ArticleComment" alias="ArticleComment"/>
+		<typeAlias type="com.shine.automotive.po.Brand" alias="Brand"/>
+		<typeAlias type="com.shine.automotive.po.Car" alias="Car"/>
+		<typeAlias type="com.shine.automotive.po.CarRecord" alias="CarRecord"/>
+		<typeAlias type="com.shine.automotive.po.Order" alias="Order"/>
+		<typeAlias type="com.shine.automotive.po.Product" alias="Product"/>
+		<typeAlias type="com.shine.automotive.po.ProductCategory" alias="ProductCategory"/>
+		<typeAlias type="com.shine.automotive.po.ProductThumbnails" alias="ProductThumbnails"/>
+		<typeAlias type="com.shine.automotive.po.Service" alias="Service"/>
+		<typeAlias type="com.shine.automotive.po.ServiceCategory" alias="ServiceCategory"/>
+		<typeAlias type="com.shine.automotive.po.ShopCart" alias="ShopCart"/>
+		<typeAlias type="com.shine.automotive.po.Store" alias="Store"/>
+		<typeAlias type="com.shine.automotive.po.StoreComment" alias="StoreComment"/>
+		<typeAlias type="com.shine.automotive.po.User" alias="User"/>
+		<typeAlias type="com.shine.automotive.po.UserInfo" alias="UserInfo"/>
 	</typeAliases>
 	
 	<plugins>

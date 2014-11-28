@@ -6,19 +6,19 @@ package com.shine.automotive.po;
  */
 public class UserInfo {
 
-    private String userId; // 用户ID
+    private User user; // 用户ID
     private String realName; // 姓名
     private String cardNum; // 身份证
     private double userLng; // 纬度
     private double userLat; // 经度
     private String address; // 联系地址
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getRealName() {

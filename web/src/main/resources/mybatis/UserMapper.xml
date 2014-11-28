@@ -7,37 +7,33 @@
 	
 	<!-- 用户实体 -->
 	<resultMap type="User"  id="user" >
-		<id property="id" column="id" javaType="java.lang.String" />
-		<result property="userName" column="username" javaType="java.lang.String" />
+		<id property="userId" column="userId" javaType="java.lang.String" />
+		<result property="username" column="username" javaType="java.lang.String" />
 		<result property="password" column="password" javaType="java.lang.String" />
 		<result property="email" column="email" javaType="java.lang.String" />
 		<result property="phone" column="phone" javaType="java.lang.String" />
-		<result property="realName" column="realname" javaType="java.lang.String" />
 		<result property="avatar" column="avatar" javaType="java.lang.String" />
-		<result property="idCard" column="idcard" javaType="java.lang.String" />
-		<result property="gender" column="gender" javaType="java.lang.Integer" />
+		<result property="qq" column="qq" javaType="java.lang.String" />
+        <result property="weibo" column="weibo" javaType="java.lang.String" />
+        <result property="weixin" column="weixin" javaType="java.lang.String" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
 		<result property="updateTime" column="updateTime" javaType="java.util.Date" />
-		<result property="token" column="token" javaType="java.lang.String" />
-		<result property="tokenExpired" column="token_expried" javaType="java.lang.Long" />
-		<result property="remark" column="remark" javaType="java.lang.String" />
-		<result property="picUrl" column="pic_url" javaType="java.lang.String" />
+
 	</resultMap>
 	
 	<!-- 旅行社实体 -->
-	<resultMap type="TravelCompany"  id="travelCompany" >
-		<id property="id" column="id" javaType="java.lang.String" />
-		<result property="name" column="name" javaType="java.lang.String" />
-		<result property="type" column="type" javaType="java.lang.Integer" />
-		<result property="code" column="code" javaType="java.lang.String" />
-		<result property="servicePhone" column="servicephone" javaType="java.lang.String" />
-		<result property="certificate" column="certificate" javaType="java.lang.String" />
-		<result property="createTime" column="createTime" javaType="java.util.Date" />
-		<association property="user"  column="id"  resultMap="user"> </association>
+	<resultMap type="UserInfo"  id="userInfo" >
+		<id property="user" column="userId"  javaType="User" />
+		<result property="realName" column="realName" javaType="java.lang.String" />
+		<result property="cardNum" column="cardNum" javaType="java.lang.Integer" />
+		<result property="userLng" column="userLng" javaType="java.lang.String" />
+		<result property="userLat" column="userLat" javaType="java.lang.String" />
+		<result property="address" column="address" javaType="java.lang.String" />
+		<association property="user"  column="userId"  resultMap="user"> </association>
 	</resultMap>
 	
 	<!-- 导游实体 -->
-	<resultMap type="Guide"  id="guide" >
+	<resultMap type="UserInfo"  id="userInfo" >
 		<id property="guideId" column="id" javaType="java.lang.String" />
 		<result property="avgScore" column="avgscore" javaType="java.lang.Double" />
 		<result property="leadCount" column="leadcount" javaType="java.lang.Integer" />

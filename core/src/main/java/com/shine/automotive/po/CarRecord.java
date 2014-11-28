@@ -8,17 +8,17 @@ import java.util.Date;
  */
 public class CarRecord {
 
-    private String carId; // 车辆ID
+    private Car car; // 车辆ID
     private String serviceId; // 服务ID
     private String content; //描述
     private Date createTime; // 服务时间
 
-    public String getCarId() {
-        return carId;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCarId(String carId) {
-        this.carId = carId;
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public String getServiceId() {

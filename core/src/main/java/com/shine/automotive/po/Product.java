@@ -1,6 +1,7 @@
 package com.shine.automotive.po;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by boka on 14-11-26.
@@ -9,7 +10,7 @@ import java.util.Date;
 public class Product {
 
     private String productId; // 产品ID
-    private String categoryId; // 分类ID
+    private ProductCategory productCategory; // 分类ID
     private String storeId; // 店ID
     private String productName; // 产品名称
     private String productDesc; // 产品描述
@@ -20,6 +21,8 @@ public class Product {
     private Date createTime; // 创建时间
     private Date updateTime; // 修改时间
 
+    private List<ProductThumbnails> productThumbnailsList;
+
     public String getProductId() {
         return productId;
     }
@@ -28,12 +31,12 @@ public class Product {
         this.productId = productId;
     }
 
-    public String getCategoryId() {
-        return categoryId;
+    public ProductCategory getProductCategory() {
+        return productCategory;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public String getStoreId() {
@@ -106,5 +109,13 @@ public class Product {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<ProductThumbnails> getProductThumbnailsList() {
+        return productThumbnailsList;
+    }
+
+    public void setProductThumbnailsList(List<ProductThumbnails> productThumbnailsList) {
+        this.productThumbnailsList = productThumbnailsList;
     }
 }

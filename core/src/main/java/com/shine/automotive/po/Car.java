@@ -9,7 +9,7 @@ import java.util.Date;
 public class Car {
 
     private String carId; // 车辆编号
-    private String branchId; // 品牌ID
+    private Brand brand; // 品牌ID
     private String userInfoId; // 车主信息ID
     private Date buyTime; // 购买时间
     private String carNum; // 车牌号
@@ -22,12 +22,12 @@ public class Car {
         this.carId = carId;
     }
 
-    public String getBranchId() {
-        return branchId;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setBranchId(String branchId) {
-        this.branchId = branchId;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     public String getUserInfoId() {

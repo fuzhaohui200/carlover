@@ -8,27 +8,27 @@ import java.util.Date;
  */
 public class ArticleComment {
 
-    private String articleId; // 文章ID
-    private String userId; // 用户ID
+    private Article article; // 文章ID
+    private User user; // 用户ID
     private String comment; // 评论内容
     private int start; // 几星
     private int praise; // 点赞
     private Date createTime; // 评论时间
 
-    public String getArticleId() {
-        return articleId;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setArticleId(String articleId) {
-        this.articleId = articleId;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getComment() {
