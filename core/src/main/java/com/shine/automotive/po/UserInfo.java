@@ -6,6 +6,7 @@ package com.shine.automotive.po;
  */
 public class UserInfo {
 
+    private String userInfoId;
     private User user; // 用户ID
     private String realName; // 姓名
     private String signature; // 个人签名

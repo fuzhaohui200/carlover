@@ -18,29 +18,34 @@
         <result property="weixin" column="weixin" javaType="java.lang.String" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
 		<result property="updateTime" column="updateTime" javaType="java.util.Date" />
-
 	</resultMap>
 	
 	<!-- 旅行社实体 -->
 	<resultMap type="UserInfo"  id="userInfo" >
-		<id property="user" column="userId"  javaType="User" />
+		<id property="userInfoId" column="userInfoId"  javaType="java.lang.String" />
 		<result property="realName" column="realName" javaType="java.lang.String" />
 		<result property="cardNum" column="cardNum" javaType="java.lang.Integer" />
 		<result property="userLng" column="userLng" javaType="java.lang.String" />
 		<result property="userLat" column="userLat" javaType="java.lang.String" />
 		<result property="address" column="address" javaType="java.lang.String" />
-		<association property="user"  column="userId"  resultMap="user"> </association>
+        <result property="country" column="country" javaType="java.lang.String" />
+        <result property="city" column="city" javaType="java.lang.String" />
+        <result property="district" column="district" javaType="java.lang.String" />
+        <result property="userDesc" column="userDesc" javaType="java.lang.String" />
+        <result property="level" column="level" javaType="java.lang.Integer" />
+        <result property="totalPraise" column="totalPraise" javaType="java.lang.Integer" />
+		<association property="user"  column="userInfoId"  resultMap="user"> </association>
 	</resultMap>
 	
-	<!-- 导游实体 -->
-	<resultMap type="UserInfo"  id="userInfo" >
-		<id property="guideId" column="id" javaType="java.lang.String" />
+	<!-- 4S店实体 -->
+	<resultMap type="Store"  id="store" >
+		<id property="storeId" column="storeId" javaType="java.lang.String" />
 		<result property="avgScore" column="avgscore" javaType="java.lang.Double" />
 		<result property="leadCount" column="leadcount" javaType="java.lang.Integer" />
 		<result property="commentCount" column="commentcount" javaType="java.lang.Integer" />
 		<result property="status" column="status" javaType="java.lang.Integer" />
 		<result property="guideIdcard" column="guide_idcard" javaType="java.lang.String" />
-		<association property="user"  column="id"  resultMap="user"> </association>
+		<association property="user"  column="storeId"  resultMap="user"> </association>
 	</resultMap>
 	
 	<!-- 游客实体 -->

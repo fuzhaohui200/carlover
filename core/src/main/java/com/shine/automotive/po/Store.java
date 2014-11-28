@@ -6,6 +6,7 @@ package com.shine.automotive.po;
  */
 public class Store {
 
+    private String storeId;
     private User user;
     private String headStoreId; // 总店或总部ID
     private String storeName; // 4S店名称
