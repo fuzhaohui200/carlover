@@ -24,59 +24,20 @@
 	<resultMap type="UserInfo"  id="userInfo" >
 		<id property="userInfoId" column="userInfoId"  javaType="java.lang.String" />
 		<result property="realName" column="realName" javaType="java.lang.String" />
-		<result property="cardNum" column="cardNum" javaType="java.lang.Integer" />
-		<result property="userLng" column="userLng" javaType="java.lang.String" />
-		<result property="userLat" column="userLat" javaType="java.lang.String" />
-		<result property="address" column="address" javaType="java.lang.String" />
-        <result property="country" column="country" javaType="java.lang.String" />
-        <result property="city" column="city" javaType="java.lang.String" />
-        <result property="district" column="district" javaType="java.lang.String" />
-        <result property="userDesc" column="userDesc" javaType="java.lang.String" />
+		<result property="signature" column="signature" javaType="java.lang.String" />
+		<result property="birthday" column="birthday" javaType="java.lang.String" />
+		<result property="sex" column="sex" javaType="java.lang.Integer" />
+		<result property="nickName" column="nickName" javaType="java.lang.String" />
+        <result property="enName" column="enName" javaType="java.lang.String" />
         <result property="level" column="level" javaType="java.lang.Integer" />
         <result property="totalPraise" column="totalPraise" javaType="java.lang.Integer" />
+        <result property="totalMount" column="totalPraise" javaType="java.lang.Double" />
+        <result property="totalScore" column="totalScore" javaType="java.lang.Integer" />
 		<association property="user"  column="userInfoId"  resultMap="user"> </association>
 	</resultMap>
 	
-	<!-- 4S店实体 -->
-	<resultMap type="Store"  id="store" >
-		<id property="storeId" column="storeId" javaType="java.lang.String" />
-		<result property="avgScore" column="avgscore" javaType="java.lang.Double" />
-		<result property="leadCount" column="leadcount" javaType="java.lang.Integer" />
-		<result property="commentCount" column="commentcount" javaType="java.lang.Integer" />
-		<result property="status" column="status" javaType="java.lang.Integer" />
-		<result property="guideIdcard" column="guide_idcard" javaType="java.lang.String" />
-		<association property="user"  column="storeId"  resultMap="user"> </association>
-	</resultMap>
-	
-	<!-- 游客实体 -->
-	<resultMap type="Tourist"  id="tourist" >
-		<id property="touristId" column="id" javaType="java.lang.String" />
-		<result property="appUser" column="appuser" javaType="java.lang.Integer" />
-		<association property="user"  column="id"  resultMap="user"> </association>
-	</resultMap>
-	
-	<!-- 游客实体 -->
-	<resultMap type="TeamTourist"  id="teamTourist" >
-		<id property="touristId" column="tourist_id" javaType="java.lang.String" />
-		<id property="tripTeamId" column="tripteam_id" javaType="java.lang.String" />
-		<result property="createTime" column="createTime" javaType="java.util.Date" />
-		<result property="reward" column="reward" javaType="java.lang.Integer" />
-	</resultMap>
-	
-	<!-- 游客实体 -->
-	<resultMap type="CompanyGuide"  id="companyGuide" >
-		<id property="companyId" column="company_id" javaType="java.lang.String" />
-		<id property="guideId" column="guide_id" javaType="java.lang.String" />
-		<result property="createTime" column="createTime" javaType="java.util.Date" />
-	</resultMap>
-	
-	<!-- 游客实体 -->
-	<resultMap type="CompanyTourist"  id="companyTourist" >
-		<id property="companyId" column="company_id" javaType="java.lang.String" />
-		<id property="touristId" column="tourist_id" javaType="java.lang.String" />
-		<id property="coupon" column="coupon" javaType="java.lang.Integer" />
-	</resultMap>
-	
+
+
 	<insert id="saveUser" parameterType="User">
 		insert into
 		user(id, username, password, email, phone, realname, avatar, idcard, gender, createTime, token, token_expired, remark,pic_url) values (

@@ -3,19 +3,22 @@
 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Complain">
-	<resultMap type="Complain"  id="complain" >
-		<id property="id" column="id" javaType="java.lang.String" />
+<mapper namespace="Product">
+	<resultMap type="Product"  id="product" >
+		<id property="productId" column="productId" javaType="java.lang.String" />
 		<result property="userId" column="user_id" javaType="java.lang.String" />
 		<result property="tripId" column="trip_id" javaType="java.lang.String" />
 		<result property="comment" column="comment" javaType="java.lang.String" />
 		<result property="anonymous" column="anonymous" javaType="java.lang.Integer" />
+        <association property="productCategory" column="productCategoryId" resultMap="productCategory"></association>
 	</resultMap>
-
-	<insert id="saveComplain" parameterType="Complain">
-		insert into
-		complain(id, user_id, trip_id, comment, anonymous) values (
-		#{id}, #{userId}, #{tripId}, #{comment}, #{anonymous})
-	</insert>
-	
+    
+    <resultMap id="productCategory" type="Productcategory">
+        <id property="productCategoryId" column="productCategoryId" javaType="java.lang.String"/>
+        <result property="parentProductCategoryId" column="parentProductCategoryId" javaType="java.lang.String"/>
+        <result property="productCategoryName" column="productCategoryName" javaType="java.lang.String"/>
+        <result property="productCategoryDesc" column="productCategoryDesc" javaType="java.lang.String"/>
+        <result property="createTime" column="createTime" javaType="java.util.Date"/>
+        <result property="updateTime" column="updateTime" javaType="java.util.Date"/>
+    </resultMap>
 </mapper>

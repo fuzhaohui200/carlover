@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--  统计服表SQL  -->
-<mapper namespace="Statistics">
+<mapper namespace="Order">
 	<resultMap type="com.mapabc.newland.core.vo.TouristCountExtend" id="touristCountExtend">
 		<id property="date" column="date"  javaType="java.lang.String" />
 		<result property="weekNum" column="week_num" javaType="java.lang.String" />

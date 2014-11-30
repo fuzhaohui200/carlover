@@ -146,6 +146,7 @@ create table t_product_category (
 
 create table t_service (
   serviceId varchar(36) not null primary key,
+  serviceCategoryId varchar(36) not null,
   serviceName varchar(32) not null,
   serviceDesc text,
   createTime date,

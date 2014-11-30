@@ -2,7 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Trip">
+<mapper namespace="Store">
+
+    <!-- 4S店实体 -->
+    <resultMap type="Store"  id="store" >
+        <id property="storeId" column="storeId" javaType="java.lang.String" />
+        <result property="parentStoreId" column="parentStoreId" javaType="java.lang.String" />
+        <result property="storeName" column="storeName" javaType="java.lang.String" />
+        <result property="phone" column="phone" javaType="java.lang.String" />
+        <result property="phone2" column="phone2" javaType="java.lang.String" />
+        <result property="contact" column="contact" javaType="java.lang.String" />
+        <result property="storeCert" column="storeCert" javaType="java.lang.String" />
+        <result property="alipay" column="alipay" javaType="java.lang.String" />
+        <result property="tenpay" column="tenpay" javaType="java.lang.String" />
+        <result property="isOfflineStore" column="isOfflineStore" javaType="java.lang.Integer" />
+        <result property="country" column="country" javaType="java.lang.String" />
+        <result property="province" column="province" javaType="java.lang.String" />
+        <result property="city" column="city" javaType="java.lang.String" />
+        <result property="district" column="district" javaType="java.lang.String" />
+        <result property="detailAddress" column="detailAddress" javaType="java.lang.String" />
+        <association property="user"  column="storeId"  resultMap="user"> </association>
+    </resultMap>
+
 	<resultMap type="Trip"  id="trip" >
 		<id property="id" column="id" javaType="java.lang.String" />
 		<result property="companyId" column="company_id" javaType="java.lang.String" />

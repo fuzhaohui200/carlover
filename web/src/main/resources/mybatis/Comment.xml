@@ -3,7 +3,7 @@
 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Announce">
+<mapper namespace="Comment">
 	<resultMap type="Announce"  id="announce" >
 		<id property="id" column="id"  javaType="java.lang.String" />
 		<result property="title" column="title" javaType="java.lang.String" />
