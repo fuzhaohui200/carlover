@@ -3,18 +3,32 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--  统计服表SQL  -->
 <mapper namespace="Order">
-	<resultMap type="com.mapabc.newland.core.vo.TouristCountExtend" id="touristCountExtend">
-		<id property="date" column="date"  javaType="java.lang.String" />
-		<result property="weekNum" column="week_num" javaType="java.lang.String" />
-		<result property="total" column="total" javaType="java.lang.Integer" />
+	<resultMap type="Order" id="order">
+		<id property="orderId" column="orderId"  javaType="java.lang.String" />
+		<result property="remark" column="remark" javaType="java.lang.String" />
+        <result property="receiver" column="receiver" javaType="java.lang.String" />
+        <result property="country" column="country" javaType="java.lang.String" />
+        <result property="province" column="province" javaType="java.lang.String" />
+        <result property="city" column="city" javaType="java.lang.String" />
+        <result property="district" column="district" javaType="java.lang.String" />
+		<result property="detailAddress" column="detailAddress" javaType="java.lang.String" />
+        <result property="postCode" column="postCode" javaType="java.lang.String" />
+        <association property="user" column="userId" resultMap="User.user"/>
+        <association property="shopCart" column="shopCartId" resultMap="shopCart"/>
 	</resultMap>
 	
-	<resultMap type="com.mapabc.newland.core.vo.TouristPercentExtend" id="touristPercentExtend">
-		<id property="name" column="name"  javaType="java.lang.String" />
-		<result property="percent" column="percent" javaType="java.lang.Double" />
+	<resultMap type="ShopCart" id="shopCart">
+		<id property="shopCartId" column="shopCartId"  javaType="java.lang.String" />
+		<result property="productId" column="productId" javaType="java.lang.String" />
+        <result property="productName" column="productName" javaType="java.lang.String" />
+        <result property="productDesc" column="productDesc" javaType="java.lang.String" />
+        <result property="productPrice" column="productPrice" javaType="java.lang.Double" />
+        <result property="realProductPrice" column="realProductPrice" javaType="java.lang.Double" />
+        <result property="count" column="count" javaType="java.lang.Integer" />
+        <result property="creatTime" column="createTime" javaType="java.util.Date"/>
 	</resultMap>
 
-	<select id="queryTouristCount" resultType="java.lang.Integer">
+	<!--<select id="queryTouristCount" resultType="java.lang.Integer">
 		select count(tourist_id) as total from company_tourist where company_id = #{companyId}
 	</select>
 	
@@ -102,6 +116,6 @@
 			</otherwise>
 		</choose> 
 		) ctgc
-	</select>
+	</select>-->
 
 </mapper>

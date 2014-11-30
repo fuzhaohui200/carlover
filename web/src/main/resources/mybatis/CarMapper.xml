@@ -4,16 +4,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Car">
-	<resultMap type="GuideCheck"  id="guideCheck" >
+	<resultMap type="Car"  id="car" >
 		<id property="id" column="id" javaType="java.lang.String" />
 		<result property="guideId" column="guide_id" javaType="java.lang.String" />
 		<result property="result" column="result" javaType="java.lang.String" />
 	</resultMap>
+    
+    <resultMap id="brand" type="Brand">
+        <id property="brandId" column="brandId" javaType="java.lang.String"/>
+        <result property="brandName" column="brandName" javaType="java.lang.String"/>
+        <result property="productName" column="productName" javaType="java.lang.String"/>
+        <result property="productCountry" column="productCountry" javaType="java.lang.String"/>
+        <result property="seriesName" column="seriesName" javaType="java.lang.String"/>
+        <result property="seriesNum" column="seriesNum" javaType="java.lang.String"/>
+        <result property="brandNum" column="brandNum" javaType="java.lang.String"/>
+        <result property="marketTime" column="marketTime" javaType="java.util.Date"/>
+    </resultMap>
 
-	<insert id="saveGuideCheck" parameterType="GuideCheck">
-		insert into
-		guide_check(id, guide_id, result) values (
-		#{id}, #{guideId}, #{result})
-	</insert>
-	
+    <resultMap id="carRecord" type="CarRecord">
+        <association property=""
+        
+    </resultMap>
+
 </mapper>

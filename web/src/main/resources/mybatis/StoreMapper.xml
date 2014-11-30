@@ -24,7 +24,7 @@
         <association property="user"  column="storeId"  resultMap="user"> </association>
     </resultMap>
 
-	<resultMap type="Trip"  id="trip" >
+	<!--<resultMap type="Trip"  id="trip" >
 		<id property="id" column="id" javaType="java.lang.String" />
 		<result property="companyId" column="company_id" javaType="java.lang.String" />
 		<result property="name" column="name" javaType="java.lang.String" />
@@ -55,7 +55,7 @@
 		<result property="description" column="description" javaType="java.lang.String" />
 		<result property="title" column="ptitle" javaType="java.lang.String" />
 		<result property="address" column="address" javaType="java.lang.String" />
-		<!-- <association property="tripDay"  column="day_id"  resultMap="tripDay"> </association> -->
+		&lt;!&ndash; <association property="tripDay"  column="day_id"  resultMap="tripDay"> </association> &ndash;&gt;
 	</resultMap>
 	
 	<resultMap type="TeamGuide" id="teamGuide">
@@ -108,14 +108,14 @@
 		<result property="tripId" column="trip_id" javaType="java.lang.String" />
 	</resultMap>
 	
-	<!-- Save SQL Script -->
-	<!-- 保存旅行团 -->
+	&lt;!&ndash; Save SQL Script &ndash;&gt;
+	&lt;!&ndash; 保存旅行团 &ndash;&gt;
 	<insert id="saveTrip" parameterType="Trip">
 		insert into
 		trip(id, company_id, name, description, pic, days, parent_id, version, createTime) values (
 		#{id}, #{companyId}, #{name}, #{description}, #{pic}, #{days}, #{parentId}, #{version}, #{createTime})
 	</insert>
-	<!-- 保存旅行日程 -->
+	&lt;!&ndash; 保存旅行日程 &ndash;&gt;
 	<insert id="saveTripDay" parameterType="TripDay">
 		insert into
 		trip_day(id, trip_id, title, day, city1) values (
@@ -129,7 +129,7 @@
 	    </foreach>  
 	</insert>
 	
-	<!-- 保存旅行日程计划 -->
+	&lt;!&ndash; 保存旅行日程计划 &ndash;&gt;
 	<insert id="saveTripPlan" parameterType="TripPlan">
 		insert into
 		trip_plan(plan_id, type, day_id, geom, startTime, description, ptitle, address) values 
@@ -143,7 +143,7 @@
 	    </foreach>  
 	</insert>
 	
-	<!-- 保存旅行团 -->
+	&lt;!&ndash; 保存旅行团 &ndash;&gt;
 	<insert id="saveTripTeam" parameterType="TripTeam">
 		insert into
 		trip_team(id, trip_id, company_id, reward, count, date, code, createTime) 
@@ -153,7 +153,7 @@
 		insert into team_guide(team_id, guide_id, createTime) values(#{teamId}, #{guideId}, #{createTime})
 	</insert>
 	
-	<!-- Update SQL Script -->
+	&lt;!&ndash; Update SQL Script &ndash;&gt;
 	<update id="updateTrip" parameterType="Trip">
 		update trip set name = #{name}, description = #{description}, pic = #{pic}, days = #{days}  
 		where id = #{id}
@@ -173,7 +173,7 @@
 		</choose>
 	</update>
 	
-	<!-- 保存旅行团 -->
+	&lt;!&ndash; 保存旅行团 &ndash;&gt;
 	<update id="updateTripTeam" parameterType="TripTeam">
 			update trip_team
 			set count = #{count}, date = #{date},  reward = #{reward}, count = #{count}
@@ -186,7 +186,7 @@
 		where plan_id = #{id}
 	</update>
 	
-	<!-- Delete SQL Script -->
+	&lt;!&ndash; Delete SQL Script &ndash;&gt;
 	<delete id="deleteTripPlan">
 		delete from trip_plan where plan_id = #{id}
 	</delete>
@@ -223,11 +223,11 @@
 	    team_id = #{tripTeamId}
 	</delete>
 	
-	<!-- Query SQL Script -->
+	&lt;!&ndash; Query SQL Script &ndash;&gt;
 	<select id="queryTripById"  resultMap="trip">
 		select * from trip where id = #{tripId}
 	</select>
-	<!-- 查询公司旅行 -->
+	&lt;!&ndash; 查询公司旅行 &ndash;&gt;
 	<select id="queryTripByCompanyId" parameterType="java.lang.String" resultType="Trip">
 		select tt.* from (select t1.*, ifnull(t2.id, t1.id)as id2 from trip t1 left join trip t2 on t1.parent_id = t2.id
 		where (t1.name like "%"#{search}"%" or t1.description like "%"#{search}"%") and  t1.company_id = #{companyId} 
@@ -436,5 +436,5 @@
 	
 	<delete id="deleteVersionLinkByTrip">
 		delete from version_link where trip_id = #{tripId}
-	</delete>
+	</delete>-->
 </mapper>
