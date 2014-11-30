@@ -1,5 +1,7 @@
 package com.shine.automotive.po;
 
+import com.shine.automotive.mongo.ProductThumbnails;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class Product {
 
     private String productId; // 产品ID
     private ProductCategory productCategory; // 分类ID
-    private String storeId; // 店ID
+    private Store store; // 店ID
     private String productName; // 产品名称
     private String productDesc; // 产品描述
     private double productPrice; // 产品价格
@@ -39,12 +41,12 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public String getStoreId() {
-        return storeId;
+    public Store getStore() {
+        return store;
     }
 
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public String getProductName() {

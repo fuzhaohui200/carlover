@@ -8,12 +8,11 @@ public class Store {
 
     private String storeId;
     private User user;
-    private String headStoreId; // 总店或总部ID
+    private String parentStoreId; // 总店或总部ID
     private String storeName; // 4S店名称
-    private String storeAddress; // 4S店详细地址
-    private String storePhone; // 店联系电话
-    private String storePhone2; // 备用联系电话
-    private String storeContact; // 联系人
+    private String phone; // 店联系电话
+    private String phone2; // 备用联系电话
+    private String contact; // 联系人
     private String storeCert; // 4S店营业执照
     private String alipay; // 支付宝帐号
     private String tenpay; // 财付通
@@ -22,6 +21,15 @@ public class Store {
     private String province; // 省
     private String city; // 市
     private String district; // 区、县
+    private String detailAddress; // 4S店详细地址
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
 
     public User getUser() {
         return user;
@@ -31,12 +39,12 @@ public class Store {
         this.user = user;
     }
 
-    public String getHeadStoreId() {
-        return headStoreId;
+    public String getParentStoreId() {
+        return parentStoreId;
     }
 
-    public void setHeadStoreId(String headStoreId) {
-        this.headStoreId = headStoreId;
+    public void setParentStoreId(String parentStoreId) {
+        this.parentStoreId = parentStoreId;
     }
 
     public String getStoreName() {
@@ -47,36 +55,28 @@ public class Store {
         this.storeName = storeName;
     }
 
-    public String getStoreAddress() {
-        return storeAddress;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setStoreAddress(String storeAddress) {
-        this.storeAddress = storeAddress;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getStorePhone() {
-        return storePhone;
+    public String getPhone2() {
+        return phone2;
     }
 
-    public void setStorePhone(String storePhone) {
-        this.storePhone = storePhone;
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
     }
 
-    public String getStorePhone2() {
-        return storePhone2;
+    public String getContact() {
+        return contact;
     }
 
-    public void setStorePhone2(String storePhone2) {
-        this.storePhone2 = storePhone2;
-    }
-
-    public String getStoreContact() {
-        return storeContact;
-    }
-
-    public void setStoreContact(String storeContact) {
-        this.storeContact = storeContact;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getStoreCert() {
@@ -141,5 +141,13 @@ public class Store {
 
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
     }
 }

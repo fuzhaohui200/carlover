@@ -10,7 +10,7 @@ public class Car {
 
     private String carId; // 车辆编号
     private Brand brand; // 品牌ID
-    private String userInfoId; // 车主信息ID
+    private User user; // 车主信息ID
     private Date buyTime; // 购买时间
     private String carNum; // 车牌号
 
@@ -30,12 +30,12 @@ public class Car {
         this.brand = brand;
     }
 
-    public String getUserInfoId() {
-        return userInfoId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserInfoId(String userInfoId) {
-        this.userInfoId = userInfoId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getBuyTime() {

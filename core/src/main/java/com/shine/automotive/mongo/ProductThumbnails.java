@@ -1,4 +1,4 @@
-package com.shine.automotive.po;
+package com.shine.automotive.mongo;
 
 import java.util.Date;
 

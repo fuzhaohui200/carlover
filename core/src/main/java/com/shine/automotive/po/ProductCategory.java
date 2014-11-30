@@ -8,43 +8,43 @@ import java.util.Date;
  */
 public class ProductCategory {
 
-    private String categoryId; //
-    private String parentCategoryId; //
-    private String categoryName; //
-    private String categoryDesc;
+    private String productCategoryId; //
+    private String parentProductCategoryId; //
+    private String productCategoryName; //
+    private String productCategoryDesc;
     private Date createTime;
     private Date updateTime;
 
-    public String getCategoryId() {
-        return categoryId;
+    public String getProductCategoryId() {
+        return productCategoryId;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setProductCategoryId(String productCategoryId) {
+        this.productCategoryId = productCategoryId;
     }
 
-    public String getParentCategoryId() {
-        return parentCategoryId;
+    public String getParentProductCategoryId() {
+        return parentProductCategoryId;
     }
 
-    public void setParentCategoryId(String parentCategoryId) {
-        this.parentCategoryId = parentCategoryId;
+    public void setParentProductCategoryId(String parentProductCategoryId) {
+        this.parentProductCategoryId = parentProductCategoryId;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getProductCategoryName() {
+        return productCategoryName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setProductCategoryName(String productCategoryName) {
+        this.productCategoryName = productCategoryName;
     }
 
-    public String getCategoryDesc() {
-        return categoryDesc;
+    public String getProductCategoryDesc() {
+        return productCategoryDesc;
     }
 
-    public void setCategoryDesc(String categoryDesc) {
-        this.categoryDesc = categoryDesc;
+    public void setProductCategoryDesc(String productCategoryDesc) {
+        this.productCategoryDesc = productCategoryDesc;
     }
 
     public Date getCreateTime() {

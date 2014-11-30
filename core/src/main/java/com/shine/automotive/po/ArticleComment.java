@@ -11,9 +11,10 @@ public class ArticleComment {
     private Article article; // 文章ID
     private User user; // 用户ID
     private String comment; // 评论内容
-    private int start; // 几星
+    private int star; // 几星
     private int praise; // 点赞
     private Date createTime; // 评论时间
+    private Date updateTime; // 修改时间
 
     public Article getArticle() {
         return article;
@@ -39,12 +40,12 @@ public class ArticleComment {
         this.comment = comment;
     }
 
-    public int getStart() {
-        return start;
+    public int getStar() {
+        return star;
     }
 
-    public void setStart(int start) {
-        this.start = start;
+    public void setStar(int star) {
+        this.star = star;
     }
 
     public int getPraise() {
@@ -61,5 +62,13 @@ public class ArticleComment {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

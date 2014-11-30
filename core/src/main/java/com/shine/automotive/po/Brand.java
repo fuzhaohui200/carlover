@@ -8,29 +8,29 @@ import java.util.Date;
  */
 public class Brand {
 
-    private String branchId;
-    private String branchName;  // 品牌名称
+    private String brandId;
+    private String brandName;  // 品牌名称
     private String productName; // 生产厂商
     private String productCountry; // 生产国家
     private String seriesName; // 系列
     private String seriesNum; // 系列编号
-    private String branchNum; // 品牌车型编号
-    private Date marketDate; // 上市时间
+    private String brandNum; // 品牌车型编号
+    private Date marketTime; // 上市时间
 
-    public String getBranchId() {
-        return branchId;
+    public String getBrandId() {
+        return brandId;
     }
 
-    public void setBranchId(String branchId) {
-        this.branchId = branchId;
+    public void setBrandId(String brandId) {
+        this.brandId = brandId;
     }
 
-    public String getBranchName() {
-        return branchName;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setBranchName(String branchName) {
-        this.branchName = branchName;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     public String getProductName() {
@@ -65,19 +65,19 @@ public class Brand {
         this.seriesNum = seriesNum;
     }
 
-    public String getBranchNum() {
-        return branchNum;
+    public String getBrandNum() {
+        return brandNum;
     }
 
-    public void setBranchNum(String branchNum) {
-        this.branchNum = branchNum;
+    public void setBrandNum(String brandNum) {
+        this.brandNum = brandNum;
     }
 
-    public Date getMarketDate() {
-        return marketDate;
+    public Date getMarketTime() {
+        return marketTime;
     }
 
-    public void setMarketDate(Date marketDate) {
-        this.marketDate = marketDate;
+    public void setMarketTime(Date marketTime) {
+        this.marketTime = marketTime;
     }
 }

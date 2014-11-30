@@ -12,7 +12,8 @@ public class ShopCart {
     private String productId; // 产品ID
     private String productName; // 产品名称
     private String productDesc; // 产品描述
-    private String productPrice; // 购买产品价格
+    private double productPrice; // 购买产品价格
+    private double realProductPrice; // 实际购买产品价格
     private int count; // 购买数量
     private Date createTime; // 创建时间
 
@@ -48,12 +49,20 @@ public class ShopCart {
         this.productDesc = productDesc;
     }
 
-    public String getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
+    }
+
+    public double getRealProductPrice() {
+        return realProductPrice;
+    }
+
+    public void setRealProductPrice(double realProductPrice) {
+        this.realProductPrice = realProductPrice;
     }
 
     public int getCount() {

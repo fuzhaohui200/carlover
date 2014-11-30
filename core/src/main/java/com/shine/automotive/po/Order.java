@@ -10,8 +10,15 @@ public class Order {
 
     private String orderId; // 编号
     private ShopCart shopCart; // 购物车ID
-    private String userId; // 用户名
+    private UserInfo userInfo; // 用户名
     private String remark; //　备注
+    private String receiver; // 收件人
+    private String country; // 国家
+    private String province; // 省
+    private String city; // 市
+    private String district; // 区、县
+    private String detailAddress; // 详细地址
+    private String postCode; // 邮编
     private Date createTime; //　创建时间
 
     public String getOrderId() {
@@ -30,12 +37,12 @@ public class Order {
         this.shopCart = shopCart;
     }
 
-    public String getUserId() {
-        return userId;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public String getRemark() {

@@ -9,7 +9,7 @@ import java.util.Date;
 public class CarRecord {
 
     private Car car; // 车辆ID
-    private String serviceId; // 服务ID
+    private Service service; // 服务ID
     private String content; //描述
     private Date createTime; // 服务时间
 
@@ -21,12 +21,12 @@ public class CarRecord {
         this.car = car;
     }
 
-    public String getServiceId() {
-        return serviceId;
+    public Service getService() {
+        return service;
     }
 
-    public void setServiceId(String serviceId) {
-        this.serviceId = serviceId;
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public String getContent() {

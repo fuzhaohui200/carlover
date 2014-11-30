@@ -19,7 +19,8 @@ public class UserInfo {
     private String idCard; // 身份证
     private int level; // 级别
     private int totalPraise; // 总赞赏
-    private String userDesc; // 个人说明
+    private double totalMount;
+    private int totalScore;
     private List<Address> addresses; // 收货地址
 
     public String getUserInfoId() {
@@ -108,14 +109,6 @@ public class UserInfo {
 
     public void setTotalPraise(int totalPraise) {
         this.totalPraise = totalPraise;
-    }
-
-    public String getUserDesc() {
-        return userDesc;
-    }
-
-    public void setUserDesc(String userDesc) {
-        this.userDesc = userDesc;
     }
 
     public List<Address> getAddresses() {
