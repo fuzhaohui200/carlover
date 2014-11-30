@@ -22,7 +22,7 @@
 		<typeAlias type="com.shine.automotive.po.Order" alias="Order"/>
 		<typeAlias type="com.shine.automotive.po.Product" alias="Product"/>
 		<typeAlias type="com.shine.automotive.po.ProductCategory" alias="ProductCategory"/>
-		<typeAlias type="com.shine.automotive.po.ProductThumbnails" alias="ProductThumbnails"/>
+		<typeAlias type="com.shine.automotive.mongo.ProductThumbnails" alias="ProductThumbnails"/>
 		<typeAlias type="com.shine.automotive.po.Service" alias="Service"/>
 		<typeAlias type="com.shine.automotive.po.ServiceCategory" alias="ServiceCategory"/>
 		<typeAlias type="com.shine.automotive.po.ShopCart" alias="ShopCart"/>
@@ -33,7 +33,7 @@
 	</typeAliases>
 	
 	<plugins>
-		<plugin interceptor="com.mapabc.newland.base.pager.interceptor.PagerInterceptor">
+		<plugin interceptor="com.shine.automotive.base.pager.interceptor.PagerInterceptor">
 		</plugin>
 	</plugins>
 </configuration>
