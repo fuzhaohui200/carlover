@@ -6,6 +6,7 @@ import com.shine.automotive.po.Store;
 
 /**
  * Created by fuzhaohui on 14/11/28.
+ * 4S店管理
  */
 public interface StoreService {
 

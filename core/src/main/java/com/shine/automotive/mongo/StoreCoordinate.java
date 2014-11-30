@@ -8,6 +8,7 @@ import java.util.List;
 public class StoreCoordinate {
 
     private String storeId; // 店ID
+    private List<String> services; // 店提供服务名称
     private String storeName; // 店名
     private String storeDesc; // 店描述
     private double storeLng; // 经度
@@ -78,5 +79,13 @@ public class StoreCoordinate {
 
     public void setThumbnails(List<String> thumbnails) {
         this.thumbnails = thumbnails;
+    }
+
+    public List<String> getServices() {
+        return services;
+    }
+
+    public void setServices(List<String> services) {
+        this.services = services;
     }
 }

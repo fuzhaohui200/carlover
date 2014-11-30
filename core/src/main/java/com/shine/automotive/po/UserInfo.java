@@ -1,5 +1,7 @@
 package com.shine.automotive.po;
 
+import java.util.List;
+
 /**
  * Created by boka on 14-11-26.
  * 客户基本信息
@@ -15,15 +17,18 @@ public class UserInfo {
     private String nickName; // 昵称
     private String enName; // 英文名称
     private String idCard; // 身份证
-    private String address; // 联系地址
-    private String country; // 国家
-    private String province; // 省
-    private String city; // 市
-    private String district; // 区、县
     private int level; // 级别
     private int totalPraise; // 总赞赏
     private String userDesc; // 个人说明
+    private List<Address> addresses; // 收货地址
 
+    public String getUserInfoId() {
+        return userInfoId;
+    }
+
+    public void setUserInfoId(String userInfoId) {
+        this.userInfoId = userInfoId;
+    }
 
     public User getUser() {
         return user;
@@ -39,14 +44,6 @@ public class UserInfo {
 
     public void setRealName(String realName) {
         this.realName = realName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getSignature() {
@@ -97,38 +94,6 @@ public class UserInfo {
         this.idCard = idCard;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
     public int getLevel() {
         return level;
     }
@@ -151,5 +116,13 @@ public class UserInfo {
 
     public void setUserDesc(String userDesc) {
         this.userDesc = userDesc;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }

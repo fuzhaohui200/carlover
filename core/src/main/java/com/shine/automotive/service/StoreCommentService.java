@@ -5,6 +5,7 @@ import com.shine.automotive.po.StoreComment;
 
 /**
  * Created by fuzhaohui on 14/11/28.
+ * 4S店评论服务
  */
 public interface StoreCommentService {
 

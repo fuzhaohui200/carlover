@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Created by fuzhaohui on 14/11/28.
+ * 产品分类服务
  */
 public interface ProductCategoryService {
 

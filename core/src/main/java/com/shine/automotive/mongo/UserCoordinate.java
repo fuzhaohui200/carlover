@@ -15,6 +15,7 @@ public class UserCoordinate {
     private int age; // 年龄
     private double distance; // 距离
     private String avater;
+    private int level; // 级别
     private List<String> thumbnails;
 
     public String getUserId() {
@@ -87,5 +88,13 @@ public class UserCoordinate {
 
     public void setThumbnails(List<String> thumbnails) {
         this.thumbnails = thumbnails;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

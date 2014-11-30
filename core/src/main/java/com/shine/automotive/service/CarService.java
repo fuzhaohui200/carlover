@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by fuzhaohui on 14/11/28.
+ * 汽车服务
  */
 public interface CarService {
 
