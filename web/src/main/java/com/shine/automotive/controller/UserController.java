@@ -1,5 +1,7 @@
 package com.shine.automotive.controller;
 
+import com.shine.automotive.base.controller.BaseController;
+import net.sf.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,5 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequestMapping(value = "/user", produces = { "application/json;charset=UTF-8" })
 @RestController
-public class UserController {
+public class UserController extends BaseController {
+
+    public JSONObject login(String username, String password) {
+        return writeResult("登录成功！");
+    }
 }

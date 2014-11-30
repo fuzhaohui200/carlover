@@ -31,7 +31,7 @@ public final class DataValidateUtil {
 	/**
 	 * 对象是否为空，为空返回true，否则返回false；
 	 * 
-	 * @param str
+	 * @param obj
 	 * @return
 	 */
 	public static boolean isEmpty(Object obj) {
