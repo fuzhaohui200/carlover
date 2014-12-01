@@ -24,6 +24,7 @@ public class Store {
     private String detailAddress; // 4S店详细地址
     private int isTraffic; // 是否营业
 
+
     public String getStoreId() {
         return storeId;
     }

@@ -17,6 +17,9 @@ public class User {
     private String qq; // QQ
     private String weibo; // 微博
     private String weixin; // 微信
+    private int level; // 等级
+    private int totalComment; //　总评论数
+    private int totalPraise; //　总点赞数
     private Date createTime; // 创建时间
     private Date updateTime; // 更改时间
 
@@ -106,5 +109,29 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getTotalComment() {
+        return totalComment;
+    }
+
+    public void setTotalComment(int totalComment) {
+        this.totalComment = totalComment;
+    }
+
+    public int getTotalPraise() {
+        return totalPraise;
+    }
+
+    public void setTotalPraise(int totalPraise) {
+        this.totalPraise = totalPraise;
     }
 }

@@ -17,10 +17,8 @@ public class UserInfo {
     private String nickName; // 昵称
     private String enName; // 英文名称
     private String idCard; // 身份证
-    private int level; // 级别
-    private int totalPraise; // 总赞赏
-    private double totalMount;
-    private int totalScore;
+    private double wallet; // 我的钱包
+    private int score; // 我的积分
     private List<Address> addresses; // 收货地址
 
     public String getUserInfoId() {
@@ -95,22 +93,6 @@ public class UserInfo {
         this.idCard = idCard;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public int getTotalPraise() {
-        return totalPraise;
-    }
-
-    public void setTotalPraise(int totalPraise) {
-        this.totalPraise = totalPraise;
-    }
-
     public List<Address> getAddresses() {
         return addresses;
     }
@@ -118,4 +100,22 @@ public class UserInfo {
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
+
+    public double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(double wallet) {
+        this.wallet = wallet;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+
 }
