@@ -12,7 +12,7 @@ public class Brand {
     private String brandName;  // 品牌名称
     private String productName; // 生产厂商
     private String productCountry; // 生产国家
-    private String seriesName; // 系列
+    private String seriesName; // 所属系列
     private String seriesNum; // 系列编号
     private String brandNum; // 品牌车型编号
     private Date marketTime; // 上市时间

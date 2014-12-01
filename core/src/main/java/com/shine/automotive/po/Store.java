@@ -22,6 +22,7 @@ public class Store {
     private String city; // 市
     private String district; // 区、县
     private String detailAddress; // 4S店详细地址
+    private int isTraffic; // 是否营业
 
     public String getStoreId() {
         return storeId;
@@ -149,5 +150,13 @@ public class Store {
 
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
+    }
+
+    public int getIsTraffic() {
+        return isTraffic;
+    }
+
+    public void setIsTraffic(int isTraffic) {
+        this.isTraffic = isTraffic;
     }
 }

@@ -44,7 +44,8 @@ create table t_store (
   province varchar(64),
   city varchar(64),
   district varchar(64),
-  detailAddress varchar(256)
+  detailAddress varchar(256),
+  isTraffic int
 );
 
 create table t_address (
@@ -182,3 +183,6 @@ create table t_store_comment (
   updateTime date,
   primary key(storeId, userId)
 );
+
+alter table t_store
+  add COLUMN isTraffic int;
