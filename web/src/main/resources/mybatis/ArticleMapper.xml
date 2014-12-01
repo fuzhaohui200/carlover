@@ -65,7 +65,7 @@
 		<result property="teamId" column="team_id" javaType="java.lang.String" />
 	</resultMap>
 
-	<insert id="saveReport" parameterType="Report">
+	<!--<insert id="saveReport" parameterType="Report">
 		insert into
 		report(id, trip_id, company_id, trip_score, team_id, hotel_score, comments, createTime, user_id, anonymous) values (
 		#{id}, #{tripId}, #{companyId}, #{tripScore}, #{tripTeamId}, #{hotelScore}, #{comments}, #{createTime}, #{userId}, #{anonymous})
@@ -99,10 +99,10 @@
 	    inner join user u1 on t1.user_id = u1.id
 	</select>
 	
-	<!--  
+	&lt;!&ndash;
 	<select id="queryReportByTrip"  resultMap="report">
 		select * from report where trip_id = #{tripId}
-	</select>-->
+	</select>&ndash;&gt;
 	
 	<select id="queryReportByTrip"   resultType="map">
 	   SELECT trip_score,count(trip_score)*100/(select count(trip_id) as percent from report where trip_id=#{tripId}) as percent,trip_id FROM report r group by trip_score, trip_id having trip_id=#{tripId}
@@ -165,5 +165,5 @@
 	
 	<delete id="deleteReportByTeam">
 		delete from report where team_id = #{tripTeamId}
-	</delete>
+	</delete>-->
 </mapper>
