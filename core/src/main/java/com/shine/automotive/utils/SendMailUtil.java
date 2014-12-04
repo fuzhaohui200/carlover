@@ -21,7 +21,7 @@ public class SendMailUtil {
 		
 	}
 	
-	public SendMailUtil getInstance() {
+	public static SendMailUtil getInstance() {
 		if(sendMailUtil == null) {
 			synchronized (SendMailUtil.class) {
 				if (sendMailUtil == null) {
