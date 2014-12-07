@@ -22,8 +22,8 @@
     </resultMap>
 
     <resultMap id="carRecord" type="CarRecord">
-        <association property=""
-        
+        <id property="carRecordId" column="carRecordId" javaType="java.lang.String"/>
+
     </resultMap>
 
 </mapper>
