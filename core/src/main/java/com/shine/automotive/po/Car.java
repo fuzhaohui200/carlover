@@ -13,6 +13,8 @@ public class Car {
     private User user; // 车主信息ID
     private Date buyTime; // 购买时间
     private String carNum; // 车牌号
+    private Date createTime; // 登记时间
+    private Date updateTime; // 修改时间
 
     public String getCarId() {
         return carId;
@@ -52,5 +54,21 @@ public class Car {
 
     public void setCarNum(String carNum) {
         this.carNum = carNum;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

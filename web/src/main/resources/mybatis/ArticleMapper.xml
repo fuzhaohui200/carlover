@@ -4,31 +4,27 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Article">
-	<resultMap type="Report"  id="report" >
-		<id property="id" column="id"  javaType="java.lang.String" />
-		<result property="tripId" column="trip_id" javaType="java.lang.String" />
-		<result property="tripTeamId" column="team_id" javaType="java.lang.String" />
-		<result property="companyId" column="company_id" javaType="java.lang.String" />
-		<result property="tripScore" column="trip_score" javaType="java.lang.Integer" />
-		<result property="hotelScore" column="hotel_score" javaType="java.lang.Integer" />
-		<result property="comments" column="comments" javaType="java.lang.String" />
-		<result property="userId" column="user_id" javaType="java.lang.String" />
-		<result property="anonymous" column="anonymous" javaType="java.lang.Integer" />
+	<resultMap type="Article"  id="article" >
+		<id property="articleId" column="article_id"  javaType="java.lang.String" />
+		<result property="title" column="title" javaType="java.lang.String" />
+		<result property="content" column="content" javaType="java.lang.String" />
+		<result property="mark" column="mark" javaType="java.lang.String" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
-		<association property="guideComments" column="id" resultMap="guideComments"></association>
+        <result property="updateTime" column="updateTime" javaType="java.util.Date" />
+		<association property="user" column="user_id" resultMap="User.user"></association>
 	</resultMap>
 	
-	<resultMap type="GuideComments"  id="guideComments" >
-		<id property="id" column="guide_comments_id" javaType="java.lang.String" />
-		<result property="reportId" column="report_id" javaType="java.lang.String" />
-		<result property="score" column="score" javaType="java.lang.Integer" />
-		<result property="tip" column="tip" javaType="java.lang.Integer" />
+	<resultMap type="ArticleComment"  id="articleComment" >
+		<id property="articleId" column="article_id" javaType="java.lang.String" />
+		<result property="comment" column="comment" javaType="java.lang.String" />
+		<result property="star" column="star" javaType="java.lang.Integer" />
 		<result property="praise" column="praise" javaType="java.lang.Integer" />
-		<association property="guide" column="guide_id" resultMap="User.guide"></association>
-		<association property="tripTeam" column="team_id" resultMap="Trip.tripTeam"></association>
+        <result property="createTime" column="createTime" javaType="java.util.Date" />
+        <result property="updateTime" column="updateTime" javaType="java.util.Date" />
+		<association property="user" column="user_id" resultMap="User.user"></association>
 	</resultMap>
 	
-	<resultMap type="com.mapabc.newland.core.vo.ReportExtend"  id="reportExtend" extends="report">
+	<!--<resultMap type="com.mapabc.newland.core.vo.ReportExtend"  id="reportExtend" extends="report">
 		<result property="realName" column="r_realname" javaType="java.lang.String" />
 		<result property="phone" column="r_phone" javaType="java.lang.String" />
 	</resultMap>
@@ -63,7 +59,7 @@
 		<result property="count" column="count" javaType="java.lang.Integer" />
 		<result property="avgScore" column="avgscore" javaType="java.lang.Double" />
 		<result property="teamId" column="team_id" javaType="java.lang.String" />
-	</resultMap>
+	</resultMap>-->
 
 	<!--<insert id="saveReport" parameterType="Report">
 		insert into

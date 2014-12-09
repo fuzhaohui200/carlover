@@ -5,9 +5,13 @@
 
 <mapper namespace="Car">
 	<resultMap type="Car"  id="car" >
-		<id property="id" column="id" javaType="java.lang.String" />
-		<result property="guideId" column="guide_id" javaType="java.lang.String" />
-		<result property="result" column="result" javaType="java.lang.String" />
+		<id property="carId" column="car_id" javaType="java.lang.String" />
+		<result property="carNum" column="carNum" javaType="java.lang.String" />
+        <result property="buyTime" column="buyTime" javaType="java.util.Date" />
+        <result property="createTime" column="createTime" javaType="java.util.Date" />
+        <result property="updateTime" column="updateTime" javaType="java.util.Date" />
+        <association property="user" column="user_id" resultMap="User.user"/>
+        <association property="brand" column="brand_id" resultMap="brand"/>
 	</resultMap>
     
     <resultMap id="brand" type="Brand">

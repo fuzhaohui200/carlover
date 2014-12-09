@@ -1,5 +1,7 @@
 package com.shine.automotive.po;
 
+import java.util.Date;
+
 /**
  * Created by fuzhaohui on 14-11-29.
  * 收货地址
@@ -14,6 +16,8 @@ public class Address {
     private String detailAddress; // 详细地址
     private int postCode; // 邮政编码
     private int defaultFlag; // 默认收货地址
+    private Date createTime; // 创建时间
+    private int adCode; // 地址编码
 
     public String getAddressId() {
         return addressId;
@@ -77,5 +81,21 @@ public class Address {
 
     public void setDefaultFlag(int defaultFlag) {
         this.defaultFlag = defaultFlag;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public int getAdCode() {
+        return adCode;
+    }
+
+    public void setAdCode(int adCode) {
+        this.adCode = adCode;
     }
 }

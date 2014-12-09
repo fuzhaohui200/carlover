@@ -4,21 +4,20 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Address">
-	<resultMap type="Report"  id="report" >
-		<id property="id" column="id"  javaType="java.lang.String" />
-		<result property="tripId" column="trip_id" javaType="java.lang.String" />
-		<result property="tripTeamId" column="team_id" javaType="java.lang.String" />
-		<result property="companyId" column="company_id" javaType="java.lang.String" />
-		<result property="tripScore" column="trip_score" javaType="java.lang.Integer" />
-		<result property="hotelScore" column="hotel_score" javaType="java.lang.Integer" />
-		<result property="comments" column="comments" javaType="java.lang.String" />
-		<result property="userId" column="user_id" javaType="java.lang.String" />
-		<result property="anonymous" column="anonymous" javaType="java.lang.Integer" />
+	<resultMap type="Address"  id="address" >
+		<id property="addressId" column="address_id"  javaType="java.lang.String" />
+		<result property="province" column="province" javaType="java.lang.String" />
+		<result property="city" column="city" javaType="java.lang.String" />
+		<result property="district" column="district" javaType="java.lang.String" />
+		<result property="detailAddress" column="detail_address" javaType="java.lang.String" />
+		<result property="postCode" column="post_code" javaType="java.lang.Integer" />
+		<result property="defaultAddress" column="default_address" javaType="java.lang.Integer" />
+		<result property="adCode" column="adcode" javaType="java.lang.Integer" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
-		<association property="guideComments" column="id" resultMap="guideComments"></association>
+		<association property="user" column="user_id" resultMap="User.user"></association>
 	</resultMap>
 	
-	<resultMap type="GuideComments"  id="guideComments" >
+	<!--<resultMap type="GuideComments"  id="guideComments" >
 		<id property="id" column="guide_comments_id" javaType="java.lang.String" />
 		<result property="reportId" column="report_id" javaType="java.lang.String" />
 		<result property="score" column="score" javaType="java.lang.Integer" />
@@ -63,7 +62,7 @@
 		<result property="count" column="count" javaType="java.lang.Integer" />
 		<result property="avgScore" column="avgscore" javaType="java.lang.Double" />
 		<result property="teamId" column="team_id" javaType="java.lang.String" />
-	</resultMap>
+	</resultMap>-->
 
 	<!--<insert id="saveReport" parameterType="Report">
 		insert into
