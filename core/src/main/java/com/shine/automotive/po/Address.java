@@ -9,8 +9,8 @@ import java.util.Date;
 public class Address {
 
     private String addressId; // 编号
-    private User user; // 用户
-    private String provice; // 省
+    private String userId; // 用户
+    private String province; // 省
     private String city; // 市
     private String district; // 区、县
     private String detailAddress; // 详细地址
@@ -27,20 +27,20 @@ public class Address {
         this.addressId = addressId;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getProvice() {
-        return provice;
+    public String getProvince() {
+        return province;
     }
 
-    public void setProvice(String provice) {
-        this.provice = provice;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getCity() {

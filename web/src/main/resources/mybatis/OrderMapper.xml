@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--  统计服表SQL  -->
-<mapper namespace="Order">
+<mapper namespace="NSOrder">
 	<resultMap type="Order" id="order">
 		<id property="orderId" column="orderId"  javaType="java.lang.String" />
 		<result property="remark" column="remark" javaType="java.lang.String" />
@@ -13,7 +13,7 @@
         <result property="district" column="district" javaType="java.lang.String" />
 		<result property="detailAddress" column="detailAddress" javaType="java.lang.String" />
         <result property="postCode" column="postCode" javaType="java.lang.String" />
-        <association property="user" column="userId" resultMap="User.user"/>
+        <association property="user" column="userId" resultMap="NSUser.user"/>
         <association property="shopCart" column="shopCartId" resultMap="shopCart"/>
 	</resultMap>
 	
@@ -28,94 +28,5 @@
         <result property="creatTime" column="createTime" javaType="java.util.Date"/>
 	</resultMap>
 
-	<!--<select id="queryTouristCount" resultType="java.lang.Integer">
-		select count(tourist_id) as total from company_tourist where company_id = #{companyId}
-	</select>
-	
-	<select id="queryTouristAppPercent" resultType="java.lang.Double">
-		select round((select count(t.id) as total from company_tourist ct inner join tourist t on ct.tourist_id = t.id where t.appuser = 1 and ct.company_id = #{companyId})/
-		(select count(t.id) as total from company_tourist ct inner join tourist t on ct.tourist_id = t.id 
-		where ct.company_id = #{companyId}), 2) as appuser_percent
-	</select>
-	
-	<select id="queryGuideTips" resultType="java.lang.Integer">
-		select ifnull(sum(tip), 0) as total from guide_comments where company_id = #{companyId}
-	</select>
-	
-	<select id="queryTouristGenderPercent" resultMap="touristPercentExtend">
-		select u.gender as name, round(count(u.id) / tt.total, 2) as percent from company_tourist ct inner join user u on ct.tourist_id = u.id inner join (
-		select count(tourist_id) as total from company_tourist where company_id = #{companyId}) tt 
-		where ct.company_id = #{companyId} group by u.gender;
-	</select>
-	
-	<select id="queryTouristCountByWeek"  resultMap="touristCountExtend">
-		select dayofweek(date(tt.createTime)) as week_num, date(tt.createTime) as date, count(tt.tourist_id) as total 
-		from tourist_tripteam tt 
-		<if test="type != null and type != ''">
-			inner join tourist t on t.id = tt.tourist_id
-		</if>
-		where
-		<if test="type != null and type != ''">
-			t.appuser = 1 and
-		</if>
-		tt.createTime is not null and tt.createTime &lt; curdate() 
-		and tt.createTime &gt;= DATE_SUB(curdate(),INTERVAL 7 day)   
-		and tt.company_id = #{companyId} group by date(tt.createTime) order by date desc
-	</select>
-	
-	<select id="queryTouristCountByMonth" resultMap="touristCountExtend">
-		select date(tt.createTime) as date, count(tt.tourist_id) as total from tourist_tripteam tt 
-		<if test="type != null and type != ''">
-			inner join tourist t on t.id = tt.tourist_id
-		</if>  
-		where
-		<if test="type != null and type != ''">
-			t.appuser = 1 and
-		</if>
-		tt.createTime is not null and tt.createTime &lt; curdate() 
-		and tt.createTime &gt;= DATE_SUB(curdate(),INTERVAL 1 month)  
-		and tt.company_id = #{companyId} group by date(tt.createTime) order by date desc
-	</select>
-	
-	<select id="queryTouristCountByYear" resultMap="touristCountExtend">
-		select concat(year(tt.createTime), '-', if(month(tt.createTime) &lt; 10, concat('0', month(tt.createTime)), month(tt.createTime))) as date, count(tt.tourist_id) as total from tourist_tripteam tt 
-		<if test="type != null and type != ''">
-			inner join tourist t on t.id = tt.tourist_id
-		</if>
-		where
-		<if test="type != null and type != ''">
-			t.appuser = 1 and
-		</if>
-		tt.createTime is not null and tt.createTime &lt; curdate() 
-		and tt.createTime &gt;= DATE_SUB(curdate(),INTERVAL 1 year)  
-		and tt.company_id = #{companyId} group by month(tt.createTime) order by date desc
-	</select>
-	
-	<select id="queryTouristAgeCount"  resultMap="touristCountExtend">
-		select (year(curdate()) - ifnull(cast(substring(u.idcard, 7, 4) as signed integer), year(curdate()))) as date, 
-		count(u.id) as total from company_tourist ct inner join user u on ct.tourist_id = u.id 
-		where ct.company_id = #{companyId} group by date
-	</select>
-	
-	<select id="queryTouristTipPraiseRate" resultType="java.lang.Integer">
-		select count(*) as total from (
-		select distinct ct.* from company_tourist ct left join guide_comments gc on ct.tourist_id = gc.user_id 
-		where gc.company_id = #{companyId} group by ct.tourist_id having
-		<choose>
-			<when test="type == 1">
-				ifnull(sum(gc.tip), 0) > 0 and  ifnull(sum(gc.praise), 0) > 0
-			</when>
-			<when test="type == 2">
-				ifnull(sum(gc.tip), 0) = 0 and  ifnull(sum(gc.praise), 0) > 0 
-			</when>
-			<when test="type == 3">
-				ifnull(sum(gc.tip), 0) > 0 and  ifnull(sum(gc.praise), 0) = 0 
-			</when>
-			<otherwise>
-				ifnull(sum(gc.tip), 0) = 0 and  ifnull(sum(gc.praise), 0) = 0
-			</otherwise>
-		</choose> 
-		) ctgc
-	</select>-->
 
 </mapper>

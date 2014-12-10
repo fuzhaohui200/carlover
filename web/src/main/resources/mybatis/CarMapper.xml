@@ -3,14 +3,14 @@
 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Car">
+<mapper namespace="NSCar">
 	<resultMap type="Car"  id="car" >
 		<id property="carId" column="carId" javaType="java.lang.String" />
 		<result property="carNum" column="carNum" javaType="java.lang.String" />
         <result property="buyTime" column="buyTime" javaType="java.util.Date" />
         <result property="createTime" column="createTime" javaType="java.util.Date" />
         <result property="updateTime" column="updateTime" javaType="java.util.Date" />
-        <association property="user" column="userId" resultMap="User.user"/>
+        <association property="user" column="userId" resultMap="NSUser.user"/>
         <association property="brand" column="brandId" resultMap="brand"/>
 	</resultMap>
     
@@ -30,7 +30,7 @@
         <result property="content" column="content" javaType="java.lang.String" />
         <result property="createTime" column="createTime" javaType="java.lang.String" />
         <association property="car" column="carId" resultMap="car" />
-        <association property="service" column="serviceId" resultMap="service" />
+        <association property="service" column="serviceId" resultMap="NSService.service" />
     </resultMap>
 
 </mapper>

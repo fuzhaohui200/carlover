@@ -1,5 +1,6 @@
 package com.shine.automotive.dao;
 
+import com.shine.automotive.po.Address;
 import com.shine.automotive.po.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -15,6 +18,8 @@ public class CarLoverDaoTest {
 
 	@Resource
 	private UserDao userDao;
+	@Resource
+	private AddressDao addressDao;
 
 
 	// 添加用户
@@ -44,6 +49,24 @@ public class CarLoverDaoTest {
 			user.setPhone("18516292510");
 			user.setEmail("autonavi@autonavi.com");
 			System.out.println(userDao.save("updateUser", user));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void testQueryUser() {
+		Map<String, String> params = new HashMap<String, String>();
+		System.out.println(userDao.getEntityList("queryUserForLogin", "fuzhaohui"));
+	}
+
+	@Test
+	public void testAddAddress() {
+		try {
+			Address address = new Address();
+			address.setAddressId("111");
+			address.setUserId("2014");
+			System.out.println(addressDao.save("saveAddress", address));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -3,7 +3,7 @@
 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="User">
+<mapper namespace="NSUser">
 	
 	<!-- 用户实体 -->
 	<resultMap type="User"  id="user" >
@@ -31,7 +31,7 @@
         <result property="enName" column="enName" javaType="java.lang.String" />
         <result property="level" column="level" javaType="java.lang.Integer" />
         <result property="totalPraise" column="totalPraise" javaType="java.lang.Integer" />
-        <result property="totalMount" column="totalPraise" javaType="java.lang.Double" />
+        <result property="totalMount" column="totalMount" javaType="java.lang.Double" />
         <result property="totalScore" column="totalScore" javaType="java.lang.Integer" />
 		<association property="user"  column="userInfoId"  resultMap="user"> </association>
 	</resultMap>
@@ -47,10 +47,10 @@
 		email = #{email},
 		phone = #{phone},
 		email = #{email},
-		avatar = #{avatar},
+		avater = #{avater},
 		qq = #{qq},
 		weibo = #{weibo},
-		weixing = #{weixing},
+		weixin = #{weixin},
 		status = #{status}
 		where userId = #{userId}
 	</update>
@@ -67,8 +67,8 @@
 		select *  from t_user u where u.id=#{userId}
 	</select>
 	
-	<select id="queryUserByUserName"  resultMap="user">
-		select *  from t_user u where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
+	<select id="queryUserForLogin"  resultMap="user">
+		select *  from t_user u where u.username=#{param} or u.email=#{param} or u.phone=#{param}
 	</select>
 
 	<insert id="saveUserInfo" parameterType="UserInfo">
@@ -76,8 +76,8 @@
 		t_user_info(userInfoId, realName, signature, birthday, sex, nickName, enName, level, totalPraise, totalMount, totalScore) values (
 		#{userInfoId}, #{realName}, #{signature}, #{birthday}, #{sex}, #{nickName}, #{enName}, #{level}, #{totalPraise}, #{totalMount}, #{totalScore})
 	</insert>
-	
-	<update id="updateUserInfo" parameterType="UserInfo">
+
+	<!--<update id="updateUserInfo" parameterType="UserInfo">
 		update t_user_info set realName = #{realName}, signature = #{signature}, birthday = #{birthday},
 		sex = #{sex}, nickName = #{nickName}, enName= #{enName}, level = #{level}, totalPraise = #{totalPraise},
 		totalMount = #{totalMount}, totalScore = #{totalScore}
@@ -86,6 +86,6 @@
 	
 	<select id="queryUserInfo" resultMap="UserInfo">
 		select ui.*, u.*  from t_user_info ui inner join t_user u on ui.userInfoId = u.userId where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
-	</select>
+	</select>-->
 
 </mapper>

@@ -57,7 +57,9 @@ create table t_address (
   district varchar(64),
   detailAddress varchar(256),
   postCode varchar(6),
-  defaultFlag int
+  defaultFlag int,
+  adcode int,
+  createTime date
 );
 
 create table t_article (

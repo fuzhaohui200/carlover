@@ -3,166 +3,24 @@
 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Address">
+<mapper namespace="NSAddress">
 	<resultMap type="Address"  id="address" >
 		<id property="addressId" column="addressId"  javaType="java.lang.String" />
+		<result property="userId" column="userId" javaType="java.lang.String" />
 		<result property="province" column="province" javaType="java.lang.String" />
 		<result property="city" column="city" javaType="java.lang.String" />
 		<result property="district" column="district" javaType="java.lang.String" />
 		<result property="detailAddress" column="detailAddress" javaType="java.lang.String" />
-		<result property="postCode" column="post_code" javaType="java.lang.Integer" />
-		<result property="defaultAddress" column="defaultAddress" javaType="java.lang.Integer" />
+		<result property="postCode" column="postCode" javaType="java.lang.Integer" />
+		<result property="defaultFlag" column="defaultFlag" javaType="java.lang.Integer" />
 		<result property="adCode" column="adcode" javaType="java.lang.Integer" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
-		<association property="user" column="user_id" resultMap="User.user"></association>
 	</resultMap>
 	
-	<!--<resultMap type="GuideComments"  id="guideComments" >
-		<id property="id" column="guide_comments_id" javaType="java.lang.String" />
-		<result property="reportId" column="report_id" javaType="java.lang.String" />
-		<result property="score" column="score" javaType="java.lang.Integer" />
-		<result property="tip" column="tip" javaType="java.lang.Integer" />
-		<result property="praise" column="praise" javaType="java.lang.Integer" />
-		<association property="guide" column="guide_id" resultMap="User.guide"></association>
-		<association property="tripTeam" column="team_id" resultMap="Trip.tripTeam"></association>
-	</resultMap>
-	
-	<resultMap type="com.mapabc.newland.core.vo.ReportExtend"  id="reportExtend" extends="report">
-		<result property="realName" column="r_realname" javaType="java.lang.String" />
-		<result property="phone" column="r_phone" javaType="java.lang.String" />
-	</resultMap>
-	
-	<resultMap type="com.mapabc.newland.core.vo.ScoreExtend"  id="scoreExtend">
-		<id property="score" column="score" javaType="java.lang.String" />
-		<result property="percent" column="percent" javaType="java.lang.Double" />
-	</resultMap>
-	
-	<resultMap type="com.mapabc.newland.core.vo.GuideCommentExtend" id="guideCommentExtend">
-		<id property="id" column="id" javaType="java.lang.String" />
-		<result property="realName" column="realname" javaType="java.lang.String" />
-		<result property="phone" column="phone" javaType="java.lang.String" />
-		<result property="totalTip" column="totalTip" javaType="java.lang.Integer" />
-		<result property="totalPraise" column="totalPraise" javaType="java.lang.Integer" />
-		<result property="avgScore" column="avgscore" javaType="java.lang.Double" />
-		<collection property="scoreCounts" resultMap="scoreExtend"></collection>
-	</resultMap>
-	
-	<resultMap type="com.mapabc.newland.core.vo.TripCommentExtend" id="tripCommentExtend">
-		<id property="id" column="id" javaType="java.lang.String" />
-		<result property="name" column="name" javaType="java.lang.String" />
-		<result property="avgScore" column="avgscore" javaType="java.lang.Double" />
-		<result property="guideAvgScore" column="guide_avgscore" javaType="java.lang.Double" />
-		<collection property="scoreCounts" resultMap="scoreExtend"></collection>
-	</resultMap>
-	
-	<resultMap type="com.mapabc.newland.core.vo.TripTeamCommentExtend" id="tripTeamCommentExtend">
-		<id property="id" column="id" javaType="java.lang.String" />
-		<result property="name" column="name" javaType="java.lang.String" />
-		<result property="date" column="date" javaType="java.lang.String" />
-		<result property="count" column="count" javaType="java.lang.Integer" />
-		<result property="avgScore" column="avgscore" javaType="java.lang.Double" />
-		<result property="teamId" column="team_id" javaType="java.lang.String" />
-	</resultMap>-->
+	<insert id="saveAddress" parameterType="Address">
+		insert into t_address(addressId, province, city, district, detailAddress, postCode, defaultFlag, adCode, createTime, userId) values(
+		#{addressId}, #{province}, #{city}, #{district}, #{detailAddress}, #{postCode}, #{defaultFlag}, #{adCode}, #{createTime}, #{userId}
+		)
 
-	<!--<insert id="saveReport" parameterType="Report">
-		insert into
-		report(id, trip_id, company_id, trip_score, team_id, hotel_score, comments, createTime, user_id, anonymous) values (
-		#{id}, #{tripId}, #{companyId}, #{tripScore}, #{tripTeamId}, #{hotelScore}, #{comments}, #{createTime}, #{userId}, #{anonymous})
 	</insert>
-	
-	<insert id="saveGuideComments" parameterType="GuideComments">
-		insert into
-		guide_comments(guide_comments_id, guide_id, report_id, score, tip, praise, team_id,company_id,user_id) values (
-		#{id}, #{guide.guideId}, #{reportId}, #{score}, #{tip}, #{praise}, #{tripTeam.id},#{companyId},#{userId})
-	</insert>
-	
-	<update id="updateGuideComments" parameterType="GuideComments">
-		update guide_comments set
-		tip = #{tip},
-		praise = #{praise},
-		score=#{score}
-		where team_id = #{tripTeam.id} and guide_id = #{guide.guideId} and user_id=#{userId}
-	</update>
-	
-	<select id="queryReports"  resultMap="reportExtend">
-		select t1.*, u1.realname as r_realname, u1.phone as r_phone from (select r.*, t.* from report r left join 
-		(select gc.guide_comments_id, gc.guide_id, gc.score, gc.tip, gc.praise, gc.report_id, u.realname from guide_comments gc 
-		inner join user u on gc.guide_id = u.id) t on r.id = t.report_id where 
-		<if test="tripId != null and tripId != '' ">  
-	         r.trip_id = #{tripId}  and 
-	    </if>
-	    <if test="tripTeamId != null and tripTeamId != '' ">  
-	         r.team_id = #{tripTeamId}  and 
-	    </if>
-	    r.company_id = #{companyId} order by r.createTime desc ) t1 
-	    inner join user u1 on t1.user_id = u1.id
-	</select>
-	
-	&lt;!&ndash;
-	<select id="queryReportByTrip"  resultMap="report">
-		select * from report where trip_id = #{tripId}
-	</select>&ndash;&gt;
-	
-	<select id="queryReportByTrip"   resultType="map">
-	   SELECT trip_score,count(trip_score)*100/(select count(trip_id) as percent from report where trip_id=#{tripId}) as percent,trip_id FROM report r group by trip_score, trip_id having trip_id=#{tripId}
-	</select>
-	
-	<select id="queryGuideComments" resultMap="guideComments">
-		select gc.guide_comments_id, gc.guide_id, gc.praise, gc.score, gc.tip, t1.* from guide_comments gc inner join (
-		select tt.*, t.name, t.description from trip_team tt inner join trip t on tt.trip_id = t.id) t1 
-		on gc.team_id = t1.id where 
-		gc.guide_id = #{guideId}
-	</select>
-	
-	<select id="queryTeamGuideComments" resultMap="guideComments">
-		select gc.*, g.avgscore, g.commentcount, g.leadcount, u.* from guide_comments gc inner join guide g on gc.guide_id = g.id inner join user u on g.id = u.id 
-		where gc.team_id = #{tripTeamId} and gc.user_id = #{userId}
-	</select>
-	
-	<select id="queryTeamGuideCommentsByTeam" resultMap="guideComments">
-		select t.* from guide_comments t where t.team_id = #{tripTeamId} and t.guide_id=#{guideId} and t.user_id=#{userId}
-	</select>
-	
-	<select id="queryReportsByUserTeam" resultMap="report">
-		select t.* from report t where t.user_id = #{userId} and t.team_id=#{tripTeamId}
-	</select>
-	
-	<select id="queryGuideScoreCount" resultMap="guideCommentExtend">
-		select gsp.*, ifnull(gas.avgscore, 0.0) as avgscore from (
-		select gu.*, gs.score, gs.percent, (SELECT coupon FROM company_guide c where company_id=#{companyId} and  guide_id = #{guideId}) as totalTip, gs.totalPraise from (
-		select u.id, u.realname, u.phone, g.leadcount, g.commentcount from user u inner join guide g on u.id = g.id 
-		where u.id = #{guideId}) gu left join (
-		select gc.guide_id, gc.score, count(gc.guide_id)/gcc.total * 100 as percent, gcc2.totalTip, gcc2.totalPraise from guide_comments gc 
-		left join (select guide_id, count(guide_id) as total from guide_comments where guide_id = #{guideId} and score > 0 and company_id = #{companyId}) gcc on gc.guide_id = gcc.guide_id
-		left join (select guide_id, sum(tip) as totalTip, sum(praise) as totalPraise from guide_comments where guide_id = #{guideId} and company_id = #{companyId}) gcc2 on gc.guide_id = gcc2.guide_id
-		where score > 0 and gc.guide_id = #{guideId} and company_id=#{companyId}
-		group by gc.guide_id, gc.score) gs on gu.id = gs.guide_id) gsp left join 
-		(select guide_id, avg(score) as avgscore from guide_comments 
-		where  score > 0 and guide_id = #{guideId}) gas  on gsp.id = gas.guide_id;
-	</select>
-	
-	<select id="queryTripScoreCount" resultMap="tripCommentExtend">
-		select tsp.*, ifnull(avgscore, 0.0) as avgscore from (
-		select t.id, t.name, ts.score, ts.percent from 
-		(select * from trip where id = #{tripId}) t left join (
-		select r.trip_id, r.trip_score as score, count(r.trip_score)/rc.total * 100 as percent from report r inner join 
-		(select trip_id, count(team_id) as total from report where trip_id = #{tripId}) rc on r.trip_id = rc.trip_id
-		where r.trip_id = #{tripId}
-		group by r.trip_id, r.trip_score) ts 
-		on t.id = ts.trip_id) tsp left join 
-		(select trip_id, avg(trip_score) as avgscore from report 
-		where trip_id = #{tripId}) ras  on tsp.id = ras.trip_id;
-	</select>
-	
-	<select id="queryTripTeamAvgScoreByGuide" resultMap="tripTeamCommentExtend">
-		select tt.id as team_id, t.name, tt.date, tt.count, ifnull(round(gc.guide_avgscore, 2),0) as guide_avgscore, ifnull(avgscore, 0) as avgscore from trip t inner join trip_team tt on t.id = tt.trip_id inner join team_guide tg 
-		on tt.id = tg.team_id left join (select r.team_id, avg(r.trip_score) as avgscore from report r group by r.team_id) ts on ts.team_id = tg.team_id 
-		left join (select team_id, guide_id, avg(score) as guide_avgscore  from guide_comments where guide_id = #{guideId}) gc on gc.team_id = tt.id
-		where tg.guide_id = #{guideId}
-		order by tt.date desc
-	</select>
-	
-	<delete id="deleteReportByTeam">
-		delete from report where team_id = #{tripTeamId}
-	</delete>-->
 </mapper>
