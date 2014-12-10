@@ -5,15 +5,16 @@ create table t_user (
   avater varchar(256),
   phone varchar(11) not null,
   email varchar(64) not null unique,
-  qq number(10),
+  qq varchar(10),
   weixin varchar(64),
   weibo varchar(128),
   createTime date,
-  updateTime date
+  updateTime date,
+  status int
 );
 
 create table t_user_info (
-  userId varchar(36) not null primary key,
+  userInfo varchar(36) not null primary key,
   realName varchar(128),
   signature varchar(4000),
   birthday varchar(32),

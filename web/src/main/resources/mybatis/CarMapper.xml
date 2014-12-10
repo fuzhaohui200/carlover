@@ -27,7 +27,10 @@
 
     <resultMap id="carRecord" type="CarRecord">
         <id property="carRecordId" column="carRecordId" javaType="java.lang.String"/>
-
+        <result property="content" column="content" javaType="java.lang.String" />
+        <result property="createTime" column="createTime" javaType="java.lang.String" />
+        <association property="car" column="carId" resultMap="car" />
+        <association property="service" column="serviceId" resultMap="service" />
     </resultMap>
 
 </mapper>

@@ -12,15 +12,15 @@
 		<result property="password" column="password" javaType="java.lang.String" />
 		<result property="email" column="email" javaType="java.lang.String" />
 		<result property="phone" column="phone" javaType="java.lang.String" />
-		<result property="avatar" column="avatar" javaType="java.lang.String" />
+		<result property="avater" column="avater" javaType="java.lang.String" />
 		<result property="qq" column="qq" javaType="java.lang.String" />
         <result property="weibo" column="weibo" javaType="java.lang.String" />
         <result property="weixin" column="weixin" javaType="java.lang.String" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
 		<result property="updateTime" column="updateTime" javaType="java.util.Date" />
+		<result property="status" column="status" javaType="java.lang.Integer" />
 	</resultMap>
-	
-	<!-- 旅行社实体 -->
+
 	<resultMap type="UserInfo"  id="userInfo" >
 		<id property="userInfoId" column="userInfoId"  javaType="java.lang.String" />
 		<result property="realName" column="realName" javaType="java.lang.String" />
@@ -35,13 +35,11 @@
         <result property="totalScore" column="totalScore" javaType="java.lang.Integer" />
 		<association property="user"  column="userInfoId"  resultMap="user"> </association>
 	</resultMap>
-	
-
 
 	<insert id="saveUser" parameterType="User">
 		insert into
-		user(userId, username, password, email, phone, avatar, qq, weibo, weixin, createTime, updateTime) values (
-		#{userId}, #{userName}, #{password}, #{email}, #{phone}, #{avatar}, #{qq}, #{weibo}, #{weixin}, #{createTime}, #{updateTime}})
+		t_user(userId, username, password, email, phone, avater, qq, weibo, weixin, createTime, updateTime, status) values (
+		#{userId}, #{username}, #{password}, #{email}, #{phone}, #{avater}, #{qq}, #{weibo}, #{weixin}, #{createTime}, #{updateTime}, #{status})
 	</insert>
 	
 	<update id="updateUser" parameterType="User">
@@ -73,18 +71,6 @@
 		select *  from t_user u where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
 	</select>
 
-	<select id="queryUser"  resultMap="user">
-		select *  from user where  
-		<choose>
-			<when test="realName != null and realName != '' ">
-				realname = #{realName} and right(idcard, 6) = #{idCard}
-			</when>
-			<otherwise>
-				idcard = #{idCard}
-			</otherwise>
-		</choose>
-	</select>
-
 	<insert id="saveUserInfo" parameterType="UserInfo">
 		insert into
 		t_user_info(userInfoId, realName, signature, birthday, sex, nickName, enName, level, totalPraise, totalMount, totalScore) values (
@@ -101,196 +87,5 @@
 	<select id="queryUserInfo" resultMap="UserInfo">
 		select ui.*, u.*  from t_user_info ui inner join t_user u on ui.userInfoId = u.userId where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
 	</select>
-	
-	<select id="queryCompanyByCode" resultMap="travelCompany">
-		select tc.*, u.*  from travel_company tc left join user u on tc.id = u.id where tc.code = #{code}
-	</select>
-	
-	<!-- 旅行社操作SQL End  -->
-	
-	<insert id="saveGuide" parameterType="Guide">
-		insert into guide(id, avgscore, leadcount, commentcount) values (#{guideId}, #{avgScore}, #{leadCount}, #{commentCount})
-	</insert>
-	
-	<update id="updateGuide" parameterType="Guide">
-		update guide set avgscore = #{avgScore}, leadcount = #{leadCount}, commentcount = #{commentCount}
-		where id = #{guideId}
-	</update>
-	
-	<update id="updateGuideDetail" parameterType="Guide">
-		update guide set guide_idcard=#{guideIdcard} where id = #{guideId}
-	</update>
-	
-	<select id="queryGuideById" resultMap="guide">
-		select distinct u.*, g.*, if(gt.team_id is null, 0, 1) as status from user u inner join guide g on u.id = g.id
-		left join (
-		select tg.guide_id, tg.team_id from team_guide tg inner join trip_team tt on tg.team_id=tt.id inner join trip t on tt.trip_id=t.id 
-		where (date_add(tt.date, interval t.days - 1 day) &gt;= curdate() and curdate() &gt;= tt.date) and tg.guide_id = #{guideId}) gt on g.id = gt.guide_id
-		where g.id = #{guideId}
-	</select>
-	
-	<insert id="saveTourist" parameterType="Tourist">
-		insert into tourist(id, appuser) values (#{touristId}, #{appUser})
-	</insert>
-	
-	<update id="updateTourist" parameterType="Tourist">
-		update tourist set appuser = #{appUser} where id = #{touristId}
-	</update>
-	
-	<insert id="saveTeamTourist" parameterType="TeamTourist">
-		insert into tourist_tripteam(tourist_id, tripteam_id,company_id, createTime) values (#{touristId}, #{tripTeamId}, #{companyId}, #{createTime})
-	</insert>
-	
-	<select id="queryTeamTourist"  resultMap="teamTourist">
-		select * from tourist_tripteam where tourist_id = #{touristId} and tripteam_id = #{tripTeamId}
-	</select>
-	
-	<select id="queryTouristByUserName"  resultMap="tourist">
-		select *  from user u where u.username=#{userName}
-	</select>
-	
-	<select id="queryTouristById"  resultMap="tourist">
-		select u.*, t.* from user u inner join tourist t on u.id = t.id where t.id = #{touristId}
-	</select>
-	
-	
-	<!-- 查询公司所有旅客 -->
-	<select id="queryTourists" resultMap="tourist">
-		select distinct u.*, t.appuser from user u inner join tourist t on u.id = t.id inner join tourist_tripteam tt1 on t.id = tt1.tourist_id 
-		inner join trip_team tt2 on tt1.tripteam_id = tt2.id where 1=1 
-		<if test="search != null and search != '' ">  
-	        and ( u.realname like "%"#{search}"%"  or  u.phone like "%"#{search}"%"  or u.idcard like "%"#{search}"%" or u.remark like "%"#{search}"%" )
-	    </if>
-	    <if test="appUser != null and appUser != '' ">  
-	        and t.appuser=#{appUser}    
-	    </if> 
-		<if test="tripTeamId != null and tripTeamId != '' ">  
-	        and tt2.id = #{tripTeamId}   
-	    </if> 
-	    <if test="companyId != null and companyId != '' "> 
-			and tt2.company_id = #{companyId}
-		</if>
-		order by convert(u.realname using gbk) collate gbk_chinese_ci asc 
-	</select>
-	
-	<!-- 查询公司所有旅客 
-	<select id="queryTourists" resultMap="tourist">
-		select distinct u.*, t.appuser from user u inner join tourist t on u.id = t.id inner join company_tourist tt1 on t.id = tt1.tourist_id where 1=1 
-		<if test="search != null and search != '' ">  
-	        and ( u.realname like "%"#{search}"%"  or  u.phone like "%"#{search}"%"  or u.idcard like "%"#{search}"%" or u.remark like "%"#{search}"%" )
-	    </if>
-	    <if test="appUser != null and appUser != '' ">  
-	        and t.appuser=#{appUser}    
-	    </if> 
-		<if test="tripTeamId != null and tripTeamId != '' ">  
-	        and tt2.id = #{tripTeamId}   
-	    </if> 
-	    <if test="companyId != null and companyId != '' "> 
-			and tt2.company_id = #{companyId}
-		</if>
-		order by convert(u.realname using gbk) collate gbk_chinese_ci asc 
-	</select>-->
-	
-	<select id="queryTouristsCountByTeam"  resultType="java.lang.Integer">
-		select count(tourist_id) as total from tourist_tripteam where tripteam_id = #{tripTeamId}	
-	</select>
-	<!-- 查询公司所有导游 -->
-	<select id="queryGuides" resultMap="guide">
-		select distinct ifnull(gs.avgscore, 0) as avgscore, ifnull(g.leadcount, 0) as leadcount, if(gt.team_id is null, 0, 1) as status, u.id, u.realname, u.phone, u.pic_url, cg.company_id 
-		from user u inner join guide g on u.id = g.id inner join company_guide cg on cg.guide_id = g.id 
-		left join 
-		(select sum(score)/count(score) as avgscore, c.guide_id from guide_comments c where c.company_id=#{companyId} group by  c.guide_id) gs on g.id = gs.guide_id 
-		left join (
-		select tg.guide_id, tg.team_id from team_guide tg inner join trip_team tt on tg.team_id=tt.id inner join trip t on tt.trip_id=t.id 
-		where (date_add(tt.date, interval t.days - 1 day) &gt;= curdate() and curdate() &gt;= tt.date) and tt.company_id = #{companyId}) gt on g.id = gt.guide_id
-		where 
-		<if test="realName != null and realName != ''">
-			( u.realname like "%"#{realName}"%" or u.phone like "%"#{realName}"%" ) and 
-		</if>
-		cg.company_id = #{companyId} order by 
-		<if test="orderType != null and orderType != '' and orderType != 0">
-			convert(u.realname using gbk) collate gbk_chinese_ci asc,
-		</if>
-		cg.createTime desc
-	</select>
-	
-	<select id="queryGuideByTrip" resultMap="guide">
-		select g.*,u.* from guide g inner join user u on g.id=u.id inner join team_guide tg on g.id = tg.guide_id 
-		where tg.team_id = #{tripTeamId}
-	</select>
-	
-	<delete id="deleteTeamGuide">
-		delete from team_guide where guide_id = #{guideId} and team_id = #{teamId}
-	</delete>
-	
-	<delete id="deleteTeamTourist">
-		delete from tourist_tripteam where tourist_id = #{touristId} and tripteam_id = #{teamId}
-	</delete>
-	
-	
-	<insert id="addGuide" parameterType="CompanyGuide">
-		insert into company_guide values (#{companyId}, #{guideId}, #{createTime},#{coupon})
-	</insert>
-	
-	<select id="findCompanyGuide" resultMap="companyGuide" parameterType="CompanyGuide">
-		select * from company_guide where company_id=#{companyId} and guide_id=#{guideId}
-	</select>
-	
-	<!-- 查询公司所有导游 -->
-	<select id="queryCompanyByGuide" resultType="int">
-		SELECT count(*) FROM company_guide c where guide_id=#{guideId}
-	</select>
-	
-	<select id="queryCompanyById" resultMap="travelCompany">
-		select u.id, u.username, u.email, u.realname, u.phone, tc.code, tc.servicephone, tc.certificate, tc.name, tc.createTime 
-		from user u inner join travel_company tc on u.id = tc.id 
-		where u.id = #{companyId};
-	</select>
-	
-	<update id="updateCompany"  parameterType="TravelCompany">
-		update travel_company set name = #{name}, servicephone = #{servicePhone}, certificate = #{certificate}
-		where id = #{id}
-	</update>
-	
-	<update id="updateTouristReward"  parameterType="TeamTourist">
-		update tourist_tripteam tt set tt.reward=#{reward} where tt.tourist_id=#{touristId} and tt.tripteam_id=#{tripTeamId}
-	</update>
-	
-	<update id="updateGuideReward"  parameterType="CompanyGuide">
-		update company_guide cg set coupon=cg.coupon+#{coupon} where company_id=#{companyId} and guide_id=#{guideId}
-	</update>
-	
-	<select id="queryTouristCoupons" resultType="int">
-		SELECT sum(coupon) FROM company_tourist c where tourist_id=#{touristId}
-		<if test="companyId != null and companyId != ''">
-			and company_id=#{companyId}
-		</if>
-	</select>
-	
-	<select id="queryTeamTouristCoupons" resultType="int">
-		select ifnull(reward, 0)  as coupon  FROM tourist_tripteam c where tourist_id=#{touristId} and tripteam_id=#{tripTeamId}
-	</select>
-	
-	<select id="queryGuideCoupons" resultType="int">
-		SELECT sum(coupon) FROM company_guide c where c.guide_id=#{guideId}
-	</select>
-	
-	
-	<insert id="saveCompanyTourist" parameterType="CompanyTourist">
-		insert into  company_tourist values(#{companyId},#{touristId},#{coupon})
-	</insert>
-	
-	<select id="queryCompanyTourist" resultMap="companyTourist">
-		select * from  company_tourist where company_id=#{companyId} and tourist_id=#{touristId}
-	</select>
-	
-	<update id="updateCompanyTourist"  parameterType="CompanyTourist">
-		update company_tourist c set c.coupon=c.coupon+#{coupon} where c.company_id=#{companyId} and c.tourist_id=#{touristId}
-	</update>
-	
-	<select id="queryGuideParise" resultType="int">
-		SELECT count(*) FROM newland.guide_comments g where praise=1 and guide_id=#{guideId}
-	</select>
-	
-	
+
 </mapper>

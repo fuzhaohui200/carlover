@@ -13,7 +13,7 @@
 	</settings>
 
 	<typeAliases >
-		<typeAlias alias="BigInteger" type="java.math.BigInteger"/>
+		<typeAlias type="com.shine.automotive.po.Address" alias="Address"/>
 		<typeAlias type="com.shine.automotive.po.Article" alias="Article"/>
 		<typeAlias type="com.shine.automotive.po.ArticleComment" alias="ArticleComment"/>
 		<typeAlias type="com.shine.automotive.po.Brand" alias="Brand"/>
