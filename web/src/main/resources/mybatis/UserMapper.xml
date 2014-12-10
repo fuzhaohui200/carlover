@@ -39,7 +39,8 @@
 	<insert id="saveUser" parameterType="User">
 		insert into
 		t_user(userId, username, password, email, phone, avater, qq, weibo, weixin, createTime, updateTime, status) values (
-		#{userId}, #{username}, #{password}, #{email}, #{phone}, #{avater}, #{qq}, #{weibo}, #{weixin}, #{createTime}, #{updateTime}, #{status})
+		#{userId}, #{username}, #{password}, #{email}, #{phone}, #{avater},
+		#{qq}, #{weibo}, #{weixin}, #{createTime}, #{updateTime}, #{status})
 	</insert>
 	
 	<update id="updateUser" parameterType="User">

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!-- 汽车 品牌 及 记录 -->
 <mapper namespace="NSCar">
 	<resultMap type="Car"  id="car" >
 		<id property="carId" column="carId" javaType="java.lang.String" />
@@ -32,5 +32,21 @@
         <association property="car" column="carId" resultMap="car" />
         <association property="service" column="serviceId" resultMap="NSService.service" />
     </resultMap>
+
+    <insert id="saveCar" parameterType="Car">
+        insert into t_car(carId, carNum, buyTime, createTime, updateTime, userId, brandId) values(
+        #{carId}, #{carNum}, #{buyTime}, #{createTime}, #{updateTime}, #{userId}, #{brandId})
+    </insert>
+
+    <insert id="saveBrand" parameterType="Brand">
+        insert into t_brand(brandId, brandName, productName, productCountry, seriesName, seriesNum,
+        brandNum, marketTime) values(#{brandId}, #{brandName}, #{productName, #{productCountry}, #{seriesName},
+        #{seriesNum}, #{brandNum}, #{marketTime})
+    </insert>
+
+    <insert id="saveCarRecord" parameterType="CarRecord">
+        insert into t_car_record(carRecordId, content, createTime, carId, serviceId) values(
+        #{carRecordId}, #{content}, #{createTime}, #{carId}, #{serviceId})
+    </insert>
 
 </mapper>

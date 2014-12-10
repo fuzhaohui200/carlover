@@ -34,18 +34,13 @@ create table t_store (
   parentStoreId varchar(36),
   storeName varchar(128),
   address varchar(256),
-  phone varchar(16) not null,
   phone2 varchar(16),
   contact varchar(128),
   storeCert varchar(256),
   alipay varchar(128),
   tenpay varchar(128),
   isOfflineStore int,
-  country varchar(32),
-  province varchar(64),
-  city varchar(64),
-  district varchar(64),
-  detailAddress varchar(256),
+  addressId varchar(36),
   isTraffic int
 );
 

@@ -21,6 +21,5 @@
 		insert into t_address(addressId, province, city, district, detailAddress, postCode, defaultFlag, adCode, createTime, userId) values(
 		#{addressId}, #{province}, #{city}, #{district}, #{detailAddress}, #{postCode}, #{defaultFlag}, #{adCode}, #{createTime}, #{userId}
 		)
-
 	</insert>
 </mapper>

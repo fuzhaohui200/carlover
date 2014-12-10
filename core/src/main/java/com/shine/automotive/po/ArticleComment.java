@@ -8,13 +8,22 @@ import java.util.Date;
  */
 public class ArticleComment {
 
-    private Article article; // 文章ID
+    private String articleId; // 文章ID
+    private Article article; // 文章
     private User user; // 用户ID
     private String comment; // 评论内容
     private int star; // 几星
     private int praise; // 点赞
     private Date createTime; // 评论时间
     private Date updateTime; // 修改时间
+
+    public String getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
+    }
 
     public Article getArticle() {
         return article;

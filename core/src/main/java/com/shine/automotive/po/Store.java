@@ -10,18 +10,13 @@ public class Store {
     private User user;
     private String parentStoreId; // 总店或总部ID
     private String storeName; // 4S店名称
-    private String phone; // 店联系电话
-    private String phone2; // 备用联系电话
+    private String phone; // 店备用联系电话
     private String contact; // 联系人
     private String storeCert; // 4S店营业执照
     private String alipay; // 支付宝帐号
     private String tenpay; // 财付通
     private int isOfflineStore; // 是否为实体店
-    private String country; // 国家
-    private String province; // 省
-    private String city; // 市
-    private String district; // 区、县
-    private String detailAddress; // 4S店详细地址
+    private Address address; // 店地址信息
     private int isTraffic; // 是否营业
 
 
@@ -65,14 +60,6 @@ public class Store {
         this.phone = phone;
     }
 
-    public String getPhone2() {
-        return phone2;
-    }
-
-    public void setPhone2(String phone2) {
-        this.phone2 = phone2;
-    }
-
     public String getContact() {
         return contact;
     }
@@ -113,44 +100,12 @@ public class Store {
         this.isOfflineStore = isOfflineStore;
     }
 
-    public String getCountry() {
-        return country;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getDetailAddress() {
-        return detailAddress;
-    }
-
-    public void setDetailAddress(String detailAddress) {
-        this.detailAddress = detailAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public int getIsTraffic() {

@@ -13,7 +13,7 @@
         <result property="updateTime" column="updateTime" javaType="java.util.Date" />
 		<association property="user" column="userId" resultMap="NSUser.user"></association>
 	</resultMap>
-	
+
 	<resultMap type="ArticleComment"  id="articleComment" >
 		<id property="articleId" column="articleId" javaType="java.lang.String" />
 		<result property="comment" column="comment" javaType="java.lang.String" />
@@ -23,6 +23,16 @@
         <result property="updateTime" column="updateTime" javaType="java.util.Date" />
 		<association property="user" column="userId" resultMap="NSUser.user"></association>
 	</resultMap>
+
+	<insert id="saveArticle" parameterType="Article">
+		insert into t_article(articleId, title, content, mark, createTime, updateTime, userId) values (
+		#{articleId}, #{title}, #{content}, #{mark}, #{createTime}, #{updateTime}, #{userId})
+	</insert>
+
+	<insert id="saveArticleComment" parameterType="ArticleComment">
+		insert into t_articile_comment(articleId, comment, star, praise, createTime, updateTime, userId)
+		values(#{articleId}, #{comment, #{star}, #{praise}, #{createTime}, #{updateTime}, #{userId})
+	</insert>
 	
 
 </mapper>

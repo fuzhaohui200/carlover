@@ -10,18 +10,33 @@
         <result property="parentStoreId" column="parentStoreId" javaType="java.lang.String" />
         <result property="storeName" column="storeName" javaType="java.lang.String" />
         <result property="phone" column="phone" javaType="java.lang.String" />
-        <result property="phone2" column="phone2" javaType="java.lang.String" />
         <result property="contact" column="contact" javaType="java.lang.String" />
         <result property="storeCert" column="storeCert" javaType="java.lang.String" />
         <result property="alipay" column="alipay" javaType="java.lang.String" />
         <result property="tenpay" column="tenpay" javaType="java.lang.String" />
         <result property="isOfflineStore" column="isOfflineStore" javaType="java.lang.Integer" />
-        <result property="country" column="country" javaType="java.lang.String" />
-        <result property="province" column="province" javaType="java.lang.String" />
-        <result property="city" column="city" javaType="java.lang.String" />
         <result property="district" column="district" javaType="java.lang.String" />
         <result property="detailAddress" column="detailAddress" javaType="java.lang.String" />
-        <association property="user"  column="storeId"  resultMap="NSUser.user"> </association>
+        <association property="user"  column="storeId"  resultMap="NSUser.user" />
+        <association property="address" column="adressId" resultMap="NSAddress.address" />
     </resultMap>
+
+    <resultMap id="storeComment" type="StoreComment">
+        <id property="store" column="storeId" javaType="java.lang.String" />
+        <result property="comment" column="comment" javaType="java.lang.String" />
+        <result property="star" column="star" javaType="java.lang.Integer" />
+        <result property="praise" column="praise" javaType="java.lang.Integer" />
+        <result property="createTime" column="createTime" javaType="java.util.Date" />
+        <result property="updateTime" column="updateTime" javaType="java.util.Date" />
+        <association property="store" column="storeId" resultMap="NSStore.store" />
+    </resultMap>
+
+    <insert id="saveStore" parameterType="Store">
+        insert into t_store(storeId, parentStoreId, phone, contact, storeCert,
+        alipay, tenpay, isOfflineStore, addressId, userId) values (
+         #{storeId}, #{parentStoreId}, #{phone}, #{contact}, #{storeCert}, #{alipay},
+         #{tenpay}, #{isOfflineStore}, #{addressId}, #{userId}
+        )
+    </insert>
 
 </mapper>

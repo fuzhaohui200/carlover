@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class StoreComment {
 
-    private String storeId;
+    private String storeId; // 店ID
     private Store store; // 店
     private User user; // 用户
     private String comment; // 评论内容
