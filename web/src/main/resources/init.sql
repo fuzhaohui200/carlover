@@ -184,5 +184,5 @@ create table t_store_comment (
   primary key(storeId, userId)
 );
 
-alter table t_store
-  add COLUMN isTraffic int;
+alter table t_user
+  add COLUMN status int;

@@ -40,62 +40,39 @@
 
 	<insert id="saveUser" parameterType="User">
 		insert into
-		user(id, username, password, email, phone, realname, avatar, idcard, gender, createTime, token, token_expired, remark,pic_url) values (
-		#{id}, #{userName}, #{password}, #{email}, #{phone}, #{realName}, #{avatar}, #{idCard}, #{gender}, #{createTime}, #{token}, #{tokenExpired}, #{remark},#{picUrl})
+		user(userId, username, password, email, phone, avatar, qq, weibo, weixin, createTime, updateTime) values (
+		#{userId}, #{userName}, #{password}, #{email}, #{phone}, #{avatar}, #{qq}, #{weibo}, #{weixin}, #{createTime}, #{updateTime}})
 	</insert>
 	
 	<update id="updateUser" parameterType="User">
-		update user  set 
-		username = #{userName},
+		update t_user set
 		email = #{email},
 		phone = #{phone},
-		realname = #{realName},
+		email = #{email},
 		avatar = #{avatar},
-		idcard = #{idCard},
-		gender = #{gender},
-		remark = #{remark},
-		pic_url = #{picUrl}
-		where id = #{id}
+		qq = #{qq},
+		weibo = #{weibo},
+		weixing = #{weixing},
+		status = #{status}
+		where userId = #{userId}
 	</update>
 	
 	<update id="changePassword">
-		update user set password = #{password} where id = #{userId}
+		update t_user set password = #{password} where userId = #{userId}
 	</update>
-	
-	
-	<update id="updateToken" parameterType="User">
-		update user set token = #{token},token_expired=#{tokenExpired} where id=#{id}
-	</update >
-	
-	<delete id="deleteUser" >
-		delete from user where id = #{userId}
-	</delete>
-	
+
+	<update id="changeStatus">
+		update t_user set status = #{status} where userId = #{userId}
+	</update>
+
 	<select id="queryUserById"  resultMap="user">
-		select *  from user u where u.id=#{userId}
+		select *  from t_user u where u.id=#{userId}
 	</select>
 	
 	<select id="queryUserByUserName"  resultMap="user">
-		select *  from user u where u.username=#{userName}
+		select *  from t_user u where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
 	</select>
-	
-	<select id="queryGuideByUserName"  resultMap="user">
-		select *  from user u where u.username=#{userName}
-	</select>
-	
-	<select id="queryUserByEmail"  resultMap="user">
-		select *  from user u where u.email=#{email}
-	</select>
-	
-	<select id="queryUserByPhone"  resultMap="user">
-		select *  from user u where u.phone=#{phone}
-	</select>
-	
-	
-	<select id="queryUserByToken"  resultMap="user">
-		select *  from user u where u.token=#{token} and u.token_expired>#{time}
-	</select>
-	
+
 	<select id="queryUser"  resultMap="user">
 		select *  from user where  
 		<choose>
@@ -107,21 +84,22 @@
 			</otherwise>
 		</choose>
 	</select>
-	
-	<!-- 旅行社操作SQL Start  -->
-	<insert id="saveTravelCompany" parameterType="TravelCompany">
+
+	<insert id="saveUserInfo" parameterType="UserInfo">
 		insert into
-		travel_company(id, name, type, code, servicephone, certificate, createTime) values (
-		#{id}, #{name}, #{type}, #{code}, #{servicePhone}, #{certificate}, #{createTime})
+		t_user_info(userInfoId, realName, signature, birthday, sex, nickName, enName, level, totalPraise, totalMount, totalScore) values (
+		#{userInfoId}, #{realName}, #{signature}, #{birthday}, #{sex}, #{nickName}, #{enName}, #{level}, #{totalPraise}, #{totalMount}, #{totalScore})
 	</insert>
 	
-	<update id="updateTravelCompany" parameterType="TravelCompany">
-		update travel_company set name = #{name}, servicephone = #{servicePhone}, certificate = #{certificate}
-		where id = #{id}
+	<update id="updateUserInfo" parameterType="UserInfo">
+		update t_user_info set realName = #{realName}, signature = #{signature}, birthday = #{birthday},
+		sex = #{sex}, nickName = #{nickName}, enName= #{enName}, level = #{level}, totalPraise = #{totalPraise},
+		totalMount = #{totalMount}, totalScore = #{totalScore}
+		where userInfoId = #{userInfoId}
 	</update>
 	
-	<select id="queryCompany" resultMap="travelCompany">
-		select tc.*, u.*  from travel_company tc left join user u on tc.id = u.id where u.email = #{email}
+	<select id="queryUserInfo" resultMap="UserInfo">
+		select ui.*, u.*  from t_user_info ui inner join t_user u on ui.userInfoId = u.userId where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
 	</select>
 	
 	<select id="queryCompanyByCode" resultMap="travelCompany">

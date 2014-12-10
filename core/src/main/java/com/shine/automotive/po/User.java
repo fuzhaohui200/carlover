@@ -22,6 +22,7 @@ public class User {
     private int totalPraise; //　总点赞数
     private Date createTime; // 创建时间
     private Date updateTime; // 更改时间
+    private int status; // 用户状态
 
     public String getUserId() {
         return userId;
@@ -133,5 +134,13 @@ public class User {
 
     public void setTotalPraise(int totalPraise) {
         this.totalPraise = totalPraise;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
