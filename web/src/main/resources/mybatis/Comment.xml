@@ -4,12 +4,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Comment">
-	<resultMap type="Announce"  id="announce" >
-		<id property="id" column="id"  javaType="java.lang.String" />
+	<resultMap type="ArticleComment"  id="articleComment" >
+		<id property="article" column="articleId"  javaType="java.lang.String" />
 		<result property="title" column="title" javaType="java.lang.String" />
 		<result property="content" column="content" javaType="java.lang.String" />
 		<result property="tripId" column="trip_id" javaType="java.lang.String" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
+		<association property="article" column="articleId" resultMap="Article.article" />
+		<association property="user" column="userId" resultMap="User.user" />
+	</resultMap>
+	
+	<resultMap id="storeComment" type="StoreComment">
+
+		<id property="store" column="storeId" javaType="java.lang.String" />
+		<result property="comment" column="comment" javaType="java.lang.String" />
+		<result property="star" column="star" javaType="java.lang.Integer" />
+		<result property="praise" column="praise" javaType="java.lang.Integer" />
+		<result property="createTime" column="createTime" javaType="java.util.Date" />
+		<result property="updateTime" column="updateTime" javaType="java.util.Date" />
+		<association property="store" column="storeId" resultMap="Store.store" />
 	</resultMap>
 	
 

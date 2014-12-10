@@ -21,7 +21,7 @@
         <result property="city" column="city" javaType="java.lang.String" />
         <result property="district" column="district" javaType="java.lang.String" />
         <result property="detailAddress" column="detailAddress" javaType="java.lang.String" />
-        <association property="user"  column="storeId"  resultMap="user"> </association>
+        <association property="user"  column="storeId"  resultMap="User.user"> </association>
     </resultMap>
 
 	<!--<resultMap type="Trip"  id="trip" >

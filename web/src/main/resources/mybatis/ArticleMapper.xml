@@ -5,23 +5,23 @@
 
 <mapper namespace="Article">
 	<resultMap type="Article"  id="article" >
-		<id property="articleId" column="article_id"  javaType="java.lang.String" />
+		<id property="articleId" column="articleId"  javaType="java.lang.String" />
 		<result property="title" column="title" javaType="java.lang.String" />
 		<result property="content" column="content" javaType="java.lang.String" />
 		<result property="mark" column="mark" javaType="java.lang.String" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
         <result property="updateTime" column="updateTime" javaType="java.util.Date" />
-		<association property="user" column="user_id" resultMap="User.user"></association>
+		<association property="user" column="userId" resultMap="User.user"></association>
 	</resultMap>
 	
 	<resultMap type="ArticleComment"  id="articleComment" >
-		<id property="articleId" column="article_id" javaType="java.lang.String" />
+		<id property="articleId" column="articleId" javaType="java.lang.String" />
 		<result property="comment" column="comment" javaType="java.lang.String" />
 		<result property="star" column="star" javaType="java.lang.Integer" />
 		<result property="praise" column="praise" javaType="java.lang.Integer" />
         <result property="createTime" column="createTime" javaType="java.util.Date" />
         <result property="updateTime" column="updateTime" javaType="java.util.Date" />
-		<association property="user" column="user_id" resultMap="User.user"></association>
+		<association property="user" column="userId" resultMap="User.user"></association>
 	</resultMap>
 	
 	<!--<resultMap type="com.mapabc.newland.core.vo.ReportExtend"  id="reportExtend" extends="report">
