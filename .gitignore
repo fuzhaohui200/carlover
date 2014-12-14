@@ -12,3 +12,5 @@ release.properties
 
 
 *.*.iml
+core/core.iml
+web/web.iml
