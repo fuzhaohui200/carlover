@@ -30,7 +30,6 @@ create table t_user_info (
 
 create table t_store (
   storeId varchar(36) not null primary key,
-  userId varchar(36) not null,
   parentStoreId varchar(36),
   storeName varchar(128),
   address varchar(256),
@@ -41,7 +40,8 @@ create table t_store (
   tenpay varchar(128),
   isOfflineStore int,
   addressId varchar(36),
-  isTraffic int
+  isTraffic int,
+  storeLevel int
 );
 
 create table t_address (
@@ -54,7 +54,8 @@ create table t_address (
   postCode varchar(6),
   defaultFlag int,
   adcode int,
-  createTime date
+  createTime date,
+  updateTime date
 );
 
 create table t_article (
@@ -117,7 +118,9 @@ create table t_order (
   district varchar(64) not null,
   detailAddress varchar(256) not null,
   postCode varchar(6),
-  createTime date
+  createTime date,
+  updateTime date,
+  orderStatus int
 );
 
 create table t_product (
@@ -131,7 +134,10 @@ create table t_product (
   discountPrice decimal(7, 2),
   isAdded int,
   createTime date,
-  updateTime date
+  updateTime date,
+  totalSale int,
+  totalReserve int,
+  level int
 );
 
 create table t_product_category (
@@ -162,13 +168,15 @@ create table t_service_category (
 );
 
 create table t_shopcart (
-  shopcartId varchar(36) not null primary key,
+  userId varchar(36) not null,
   productId varchar(36) not null,
   productName varchar(64) not null,
   productDesc text,
   productPrice double not null,
   realProductPrice double not null,
-  createTime date
+  createTime date,
+  updateTime date,
+  primary key (userId, productId)
 );
 
 create table t_store_comment (

@@ -6,11 +6,19 @@
 <mapper namespace="NSProduct">
 	<resultMap type="Product"  id="product" >
 		<id property="productId" column="productId" javaType="java.lang.String" />
-		<result property="userId" column="user_id" javaType="java.lang.String" />
-		<result property="tripId" column="trip_id" javaType="java.lang.String" />
-		<result property="comment" column="comment" javaType="java.lang.String" />
-		<result property="anonymous" column="anonymous" javaType="java.lang.Integer" />
+		<result property="productName" column="productName" javaType="java.lang.String" />
+		<result property="productDesc" column="productDesc" javaType="java.lang.String" />
+		<result property="productPrice" column="productPrice" javaType="java.lang.Double" />
+		<result property="discount" column="discount" javaType="java.lang.Double" />
+        <result property="discountPrice" column="discountPrice" javaType="java.lang.Double" />
+        <result property="isAdded" column="isAdded" javaType="java.lang.Integer" />
+        <result property="createTime" column="createTime" javaType="java.util.Date" />
+        <result property="updateTime" column="updateTime" javaType="java.util.Date" />
+        <result property="totalSale" column="totalSale" javaType="java.lang.Long" />
+        <result property="totalReserve" column="totalReserve" javaType="java.lang.Long" />
+        <result property="productLevel" column="productLevel" javaType="java.lang.Integer" />
         <association property="productCategory" column="productCategoryId" resultMap="productCategory"/>
+        <association property="store" column="storeId" resultMap="NSStore.store" />
 	</resultMap>
     
     <resultMap id="productCategory" type="Productcategory">
@@ -21,4 +29,31 @@
         <result property="createTime" column="createTime" javaType="java.util.Date"/>
         <result property="updateTime" column="updateTime" javaType="java.util.Date"/>
     </resultMap>
+
+    <insert id="saveProduct" parameterType="Product">
+        insert into t_product(productId, productName, productDesc, productPrice, discout, discountPrice,
+        isAddedd, createTime, productCategoryId, storeId) values(#{productId}, #{productName}, #{productDesc},
+        #{discount}, #{discoutPrice}, #{iaAdded}, #{createTime}, #{productCategoryId}, #{storeId})
+    </insert>
+
+    <select id="queryProductById" resultMap="product">
+        select * from t_product tp inner join t_product_category tpc on tp.productCategoryId = tpc.productCategoryId
+        where tp.productId = #{productId}
+    </select>
+
+    <select id="queryProductByStore" resultMap="product">
+        select * from t_product tp inner join t_product_category tpc on tp.productCategoryId = tpc.productCategoryId
+        where tp.storeId = #{storeId}
+    </select>
+
+    <select id="queryProductByParams" resultMap="product">
+        select * from t_product tp inner join t_product_category tpc on tp.productCategoryId = tpc.productCategoryId
+        where (tp.productName like "%"#{searchParam}"%" or tp.productDesc like "%"#{searchParam}"%")
+        <if test="productCategoryId != null and  productCategoryId != ''">
+            and tp.productCategoryId = #{productCategoryId}
+        </if>
+        order by tp.createTime desc
+    </select>
+
+
 </mapper>

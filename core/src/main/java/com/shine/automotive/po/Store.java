@@ -18,6 +18,7 @@ public class Store {
     private int isOfflineStore; // 是否为实体店
     private Address address; // 店地址信息
     private int isTraffic; // 是否营业
+    private int storeLevel; // 显示级别
 
 
     public String getStoreId() {
@@ -114,5 +115,13 @@ public class Store {
 
     public void setIsTraffic(int isTraffic) {
         this.isTraffic = isTraffic;
+    }
+
+    public int getStoreLevel() {
+        return storeLevel;
+    }
+
+    public void setStoreLevel(int storeLevel) {
+        this.storeLevel = storeLevel;
     }
 }

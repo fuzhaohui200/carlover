@@ -16,6 +16,7 @@
 
 	<resultMap type="ArticleComment"  id="articleComment" >
 		<id property="articleId" column="articleId" javaType="java.lang.String" />
+		<id property="userId" column="userId" javaType="java.lang.String" />
 		<result property="comment" column="comment" javaType="java.lang.String" />
 		<result property="star" column="star" javaType="java.lang.Integer" />
 		<result property="praise" column="praise" javaType="java.lang.Integer" />
@@ -33,6 +34,35 @@
 		insert into t_articile_comment(articleId, comment, star, praise, createTime, updateTime, userId)
 		values(#{articleId}, #{comment, #{star}, #{praise}, #{createTime}, #{updateTime}, #{userId})
 	</insert>
-	
 
+	<select id="queryArticleById">
+		select * from t_article where articleId = #{articleId}
+	</select>
+
+	<select id="qureyArticleByUser">
+		select * from t_article where userId = #{userId}
+	</select>
+
+	<update id="updateArticle" parameterType="Article">
+		update t_article set title = #{title}, content = #{content}, mark = #{mark}, updateTime = #{updateTime}
+		where articleId = #{articleId}
+	</update>
+
+	<delete id="deleteArticle">
+		delete from t_article where articleId = #{articleId}
+	</delete>
+
+	<select id="queryArticleCommentByArticle" resultMap="articleComment">
+		select * from t_article_comment ac inner join t_user u on ac.userId = u.userId
+		where ac.articleId = #{articleId}
+	</select>
+
+	<update id="updateArticleComment" parameterType="ArticleComment">
+		update t_article_comment set comment = #{commnt}, star = #{star}, praise = #{praise}, updateTime = #{updateTime}
+		where articleId = #{articleId} and userId = #{userId}
+	</update>
+
+	<delete id="deleteArticleByArticle">
+		delete from t_article_comment where articleId= #{articleId}
+	</delete>
 </mapper>

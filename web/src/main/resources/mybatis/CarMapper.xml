@@ -26,7 +26,8 @@
     </resultMap>
 
     <resultMap id="carRecord" type="CarRecord">
-        <id property="carRecordId" column="carRecordId" javaType="java.lang.String"/>
+        <id property="carId" column="carId" javaType="java.lang.String"/>
+        <id property="serviceId" column="serviceId" javaType="java.lang.String" />
         <result property="content" column="content" javaType="java.lang.String" />
         <result property="createTime" column="createTime" javaType="java.lang.String" />
         <association property="car" column="carId" resultMap="car" />
@@ -38,15 +39,73 @@
         #{carId}, #{carNum}, #{buyTime}, #{createTime}, #{updateTime}, #{userId}, #{brandId})
     </insert>
 
+    <select id="queryCarById" resultMap="car">
+        select * from t_car tc inner joint t_user tu on tc.userId = tu.userId inner join t_brand tb on tc.brandId = tb.brandId
+        where tc.carId = #{carId}
+    </select>
+
+    <select id="queryCarByCarNum" resultMap="car">
+        select * from t_car tc inner joint t_user tu on tc.userId = tu.userId inner join t_brand tb on tc.brandId = tb.brandId
+        where tc.carNum = #{carNum}
+    </select>
+
+    <select id="queryCarByUser" resultMap="car">
+        select * from t_car tc inner joint t_user tu on tc.userId = tu.userId inner join t_brand tb on tc.brandId = tb.brandId
+        where tu.userId = #{userId}
+    </select>
+
+    <update id="updateCar" parameterType="Car">
+        update t_car set carNum = #{carNum}, buyTime = #{buyTime}, updateTime = #{updateTime}
+        where carId = #{carId}
+    </update>
+
+    <delete id="deleteCar">
+        delete from t_car where carId = #{carId}
+    </delete>
+
     <insert id="saveBrand" parameterType="Brand">
         insert into t_brand(brandId, brandName, productName, productCountry, seriesName, seriesNum,
         brandNum, marketTime) values(#{brandId}, #{brandName}, #{productName, #{productCountry}, #{seriesName},
         #{seriesNum}, #{brandNum}, #{marketTime})
     </insert>
 
+    <select id="queryBrandById" resultMap="brand">
+        select * from t_brand where brandId = #{brandId}
+    </select>
+
+    <select id="queryBrands" resultMap="brand">
+      select * from t_brand where brandName = #{brandName} or productName = #{productName} or productCountry = #{productCountry}
+      or seriesName = #{seriesName} or seriesNum = #{seriesNum} or brandNum = #{brandNum} or marketTime = #{marketTime}
+    </select>
+
+    <update id="updateBrand">
+        update t_brand set brandName = #{brandName}, productName = #{productName}, productCountry = #{productCountry},
+        seriesName = #{seriesName}, seriesNum = #{seriesNum}, brandNum = #{brandNum}, marketTime = #{marketTime}
+        where brandId = #{brandId}
+    </update>
+
+    <delete id="deleteBrand">
+        delete from t_brand where brandId = #{brandId}
+    </delete>
+
     <insert id="saveCarRecord" parameterType="CarRecord">
-        insert into t_car_record(carRecordId, content, createTime, carId, serviceId) values(
-        #{carRecordId}, #{content}, #{createTime}, #{carId}, #{serviceId})
+        insert into t_car_record(content, createTime, carId, serviceId) values(
+        #{content}, #{createTime}, #{carId}, #{serviceId})
     </insert>
+
+    <select id="queryCarRecordById" resultMap="carRecord">
+        select * from t_car tc inner join t_car_record tcr on tc.carId = tcr.cardId inner join t_service ts on tcr.serviceId = ts.serviceId
+        where tcr.carId = #{carId} and ts.serviceId = #{serviceId}
+    </select>
+
+    <select id="queryCarRecordByCar" resultMap="carRecord">
+        select * from t_car tc inner join t_car_record tcr on tc.carId = tcr.cardId inner join t_service ts on tcr.serviceId = ts.serviceId
+        where tcr.carId = #{carId}
+    </select>
+
+    <select id="queryCarRecordByCarAndServiceName" resultMap="carRecord">
+        select * from t_car tc inner join t_car_record tcr on tc.carId = tcr.cardId inner join t_service ts on tcr.serviceId = ts.serviceId
+        where tcr.carId = #{carId} and ts.serviceName like "%"#{serviceName}"%"
+    </select>
 
 </mapper>

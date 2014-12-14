@@ -17,6 +17,7 @@ public class Address {
     private int postCode; // 邮政编码
     private int defaultFlag; // 默认收货地址
     private Date createTime; // 创建时间
+    private Date updateTime; // 修改时间
     private int adCode; // 地址编码
 
     public String getAddressId() {
@@ -89,6 +90,14 @@ public class Address {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public int getAdCode() {

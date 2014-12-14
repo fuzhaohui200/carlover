@@ -1,32 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--  订单及购物车  -->
 <mapper namespace="NSOrder">
-	<resultMap type="Order" id="order">
-		<id property="orderId" column="orderId"  javaType="java.lang.String" />
-		<result property="remark" column="remark" javaType="java.lang.String" />
-        <result property="receiver" column="receiver" javaType="java.lang.String" />
-        <result property="country" column="country" javaType="java.lang.String" />
-        <result property="province" column="province" javaType="java.lang.String" />
-        <result property="city" column="city" javaType="java.lang.String" />
-        <result property="district" column="district" javaType="java.lang.String" />
-		<result property="detailAddress" column="detailAddress" javaType="java.lang.String" />
-        <result property="postCode" column="postCode" javaType="java.lang.String" />
+    <resultMap type="Order" id="order">
+        <id property="orderId" column="orderId" javaType="java.lang.String"/>
+        <result property="remark" column="remark" javaType="java.lang.String"/>
+        <result property="receiver" column="receiver" javaType="java.lang.String"/>
+        <result property="country" column="country" javaType="java.lang.String"/>
+        <result property="province" column="province" javaType="java.lang.String"/>
+        <result property="city" column="city" javaType="java.lang.String"/>
+        <result property="district" column="district" javaType="java.lang.String"/>
+        <result property="detailAddress" column="detailAddress" javaType="java.lang.String"/>
+        <result property="postCode" column="postCode" javaType="java.lang.String"/>
+        <result property="createTime" column="createTime" javaType="java.util.Date" />
+        <result property="updateTime" column="updateTime" javaType="java.util.Date" />
+        <result property="orderStatus" column="orderStatus" javaType="java.lang.Integer" />
         <association property="user" column="userId" resultMap="NSUser.user"/>
-        <association property="shopCart" column="shopCartId" resultMap="shopCart"/>
-	</resultMap>
-	
-	<resultMap type="ShopCart" id="shopCart">
-		<id property="shopCartId" column="shopCartId"  javaType="java.lang.String" />
-		<result property="productId" column="productId" javaType="java.lang.String" />
-        <result property="productName" column="productName" javaType="java.lang.String" />
-        <result property="productDesc" column="productDesc" javaType="java.lang.String" />
-        <result property="productPrice" column="productPrice" javaType="java.lang.Double" />
-        <result property="realProductPrice" column="realProductPrice" javaType="java.lang.Double" />
-        <result property="count" column="count" javaType="java.lang.Integer" />
+        <collection property="shopCarts" column="shopCartId" resultMap="shopCart" />
+    </resultMap>
+
+    <resultMap type="ShopCart" id="shopCart">
+        <id property="userId" column="userId" javaType="java.lang.String"/>
+        <id property="productId" column="productId" javaType="java.lang.String"/>
+        <result property="productName" column="productName" javaType="java.lang.String"/>
+        <result property="productDesc" column="productDesc" javaType="java.lang.String"/>
+        <result property="productPrice" column="productPrice" javaType="java.lang.Double"/>
+        <result property="realProductPrice" column="realProductPrice" javaType="java.lang.Double"/>
+        <result property="count" column="count" javaType="java.lang.Integer"/>
         <result property="creatTime" column="createTime" javaType="java.util.Date"/>
-	</resultMap>
+        <result property="updateTime" column="updateTime" javaType="java.util.Date" />
+    </resultMap>
+
+    <!--添加订单-->
+    <insert id="saveOrder" parameterType="Order">
+        insert into t_order(orderId, remark,  receiver, country, province, city, district, detailAddress,postCode,
+        userId, shopCartId, createTime, orderStatus) values(#{orderId}, #{remark}, #{receiver}, #{country}, #{province}, #{city}, #{dictrict},
+        #{detailAddress}, #{postCode}, #{userId}, #{shopCartId}, #{createTime}, #{orderStatus})
+    </insert>
+
+    <!--查询订单-->
+    <select id="queryOrderById" resultMap="order">
+        select * from t_order tor inner join t_user tu on tor.userId = tu.userId inner join t_shopcart tsc
+        on tor.shopCartId = tsc.shopCartId where tor.orderId = #{orderId}
+    </select>
+
+    <!--更新订单-->
+    <update id="updateOrder" parameterType="Order">
+        update t_order set remark = #{remark}, receiver = #{receiver}, country = #{country}, province = #{province},
+        city = #{city}, district = #{district}, postCode = #{postCode}, updateTime = #{updateTime}, orderStatus = #{orderStatus}
+        where orderIf = #{orderId}
+    </update>
+
+    <!--删除订单-->
+    <delete id="deleteOrder">
+        delete from t_order where orderId = #{orderId}
+    </delete>
+
+    <!--添加商品到购物车-->
+    <insert id="saveShopCart" parameterType="ShopCart">
+        insert into t_shopcart(userId, productId, productName, productDesc, productPrice, realProductPrice, count, createTime)
+        values(#{userId}, #{productId}, #{productName}, #{productDesc}, #{productPrice}, #{realProductPrice},
+        #{count}, #{createTime})
+    </insert>
+
+    <!--查询购物车里商品-->
+    <select id="queryShopCartByProduct" resultMap="shopCart">
+        select * from t_shopcart tsc where tsc.userId = #{userId} and tsc.productId = #{productId}
+    </select>
+
+    <!--更新购物车里商品-->
+    <update id="updateShotCart" parameterType="ShopCart">
+        update t_shopcart set productName = #{productName}, productDesc = #{productDesc}, productPrice = #{productPrice},
+        realProductPrice = #{realProductPrice}, count = #{count}, updateTime = #{updateTime}
+    </update>
+
+    <!--删除购物车里商品-->
+    <delete id="deleteShopCartByProduct">
+        delete from t_shopcart where userId = #{userId} and productId = #{productId}
+    </delete>
 
 
 </mapper>

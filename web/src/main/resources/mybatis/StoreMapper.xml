@@ -17,6 +17,7 @@
         <result property="isOfflineStore" column="isOfflineStore" javaType="java.lang.Integer" />
         <result property="district" column="district" javaType="java.lang.String" />
         <result property="detailAddress" column="detailAddress" javaType="java.lang.String" />
+        <result property="storeLevel" column="storeLevel" javaType="java.lang.Integer" />
         <association property="user"  column="storeId"  resultMap="NSUser.user" />
         <association property="address" column="adressId" resultMap="NSAddress.address" />
     </resultMap>
@@ -33,10 +34,9 @@
 
     <insert id="saveStore" parameterType="Store">
         insert into t_store(storeId, parentStoreId, phone, contact, storeCert,
-        alipay, tenpay, isOfflineStore, addressId, userId) values (
+        alipay, tenpay, isOfflineStore, addressId) values (
          #{storeId}, #{parentStoreId}, #{phone}, #{contact}, #{storeCert}, #{alipay},
-         #{tenpay}, #{isOfflineStore}, #{addressId}, #{userId}
-        )
+         #{tenpay}, #{isOfflineStore}, #{addressId})
     </insert>
 
 </mapper>

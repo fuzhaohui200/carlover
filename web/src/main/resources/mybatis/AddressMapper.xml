@@ -15,6 +15,7 @@
 		<result property="defaultFlag" column="defaultFlag" javaType="java.lang.Integer" />
 		<result property="adCode" column="adcode" javaType="java.lang.Integer" />
 		<result property="createTime" column="createTime" javaType="java.util.Date" />
+		<result property="updateTime" column="updateTime" javaType="java.util.Date" />
 	</resultMap>
 	
 	<insert id="saveAddress" parameterType="Address">
@@ -22,4 +23,22 @@
 		#{addressId}, #{province}, #{city}, #{district}, #{detailAddress}, #{postCode}, #{defaultFlag}, #{adCode}, #{createTime}, #{userId}
 		)
 	</insert>
+
+	<select id="queryAddressByUser" resultMap="address">
+		select * from t_address where userId = #{userId}
+	</select>
+
+	<select id="queryAddressById" resultMap="address">
+		select * from t_address where addressId = #{addressId}
+	</select>
+
+	<update id="updateAddress" parameterType="Address">
+		update t_address set province = #{province}, city = #{city}, district = #{district}, detailAddress = #{detailAddress,
+		postCode = #{postCode}, defaultFlag = #{defaultFlag}, adCode = #{adCode}, updateTime = #{updateTime}
+		where addressId = #{addressId}
+	</update>
+
+	<delete id="deleteAddress">
+		delete from t_address where addressId = #{addressId}
+	</delete>
 </mapper>

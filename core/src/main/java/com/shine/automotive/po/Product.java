@@ -22,6 +22,9 @@ public class Product {
     private int isAdded; // 是否上架
     private Date createTime; // 创建时间
     private Date updateTime; // 修改时间
+    private long totalSale; // 总销量
+    private long totalReserve; // 库存
+    private int productLevel; // 显示级别
 
     private List<ProductThumbnails> productThumbnailsList;
 
@@ -119,5 +122,29 @@ public class Product {
 
     public void setProductThumbnailsList(List<ProductThumbnails> productThumbnailsList) {
         this.productThumbnailsList = productThumbnailsList;
+    }
+
+    public long getTotalSale() {
+        return totalSale;
+    }
+
+    public void setTotalSale(long totalSale) {
+        this.totalSale = totalSale;
+    }
+
+    public long getTotalReserve() {
+        return totalReserve;
+    }
+
+    public void setTotalReserve(long totalReserve) {
+        this.totalReserve = totalReserve;
+    }
+
+    public int getProductLevel() {
+        return productLevel;
+    }
+
+    public void setProductLevel(int productLevel) {
+        this.productLevel = productLevel;
     }
 }
