@@ -33,7 +33,7 @@
     <insert id="saveProduct" parameterType="Product">
         insert into t_product(productId, productName, productDesc, productPrice, discout, discountPrice,
         isAddedd, createTime, productCategoryId, storeId) values(#{productId}, #{productName}, #{productDesc},
-        #{discount}, #{discoutPrice}, #{iaAdded}, #{createTime}, #{productCategoryId}, #{storeId})
+        #{discount}, #{discoutPrice}, #{iaAdded}, #{createTime}, #{productCategory.productCategoryId}, #{store.storeId})
     </insert>
 
     <select id="queryProductById" resultMap="product">
@@ -53,6 +53,45 @@
             and tp.productCategoryId = #{productCategoryId}
         </if>
         order by tp.createTime desc
+    </select>
+
+    <update id="updateProduct" parameterMap="Product">
+        update t_product set productName = #{productName}, productDesc = #{productDesc}, productPrice = #{productPrice},
+        discount = #{discount}, discountPrice = #{discountPrice}, isAdded = #{isAdded}, updateTime = #{updateTime},
+        productLevel = #{productLevel}, productCategoryId = #{productCategory.productCategoryId}
+        where productId = #{productId}
+    </update>
+
+    <update id="updateProductCount">
+        update t_product set totalSale = #{totalSale}, totalReserve= #{totalReserve} where productId = #{productId}
+    </update>
+
+    <delete id="deleteProduct">
+        delete from t_product where productId = #{productId}
+    </delete>
+
+    <insert id="saveProductCategory" parameterMap="ProductCategory">
+        insert into t_product_category(productCategoryId, parentProductCategoryId, productCategoryName, productCategoryDesc,
+        createTime) values(#{productCategoryId}, #{parentProductCategoryId}, #{productCategoryName}, #{productCategoryDesc},
+        #{createTime})
+    </insert>
+
+    <update id="updateProductCategory" parameterMap="ProductCategory">
+        update t_product_category set parentProductCategoryId = #{parentProductCategoryId}, productCategoryName = #{productCategoryName},
+        productCategoryDesc = #{productCategoryDesc}, updateTime = #{updateTime} where productCategoryId = #{productCategoryId}
+    </update>
+
+    <delete id="deleteProductCategory">
+        delete from t_product_category where productCategoryId = #{productCategoryId}
+    </delete>
+
+    <select id="queryProductCategoryById" resultMap="productCategory">
+        select * from t_product_category tpc
+        where tpc.productCategoryId = #{productCategoryId}
+    </select>
+
+    <select id="queryProductCategory" resultMap="productCategory">
+        select * from t_product_category tpc
     </select>
 
 

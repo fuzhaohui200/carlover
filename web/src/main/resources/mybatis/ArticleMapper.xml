@@ -62,7 +62,7 @@
 		where articleId = #{articleId} and userId = #{userId}
 	</update>
 
-	<delete id="deleteArticleByArticle">
+	<delete id="deleteArticleCommentByArticle">
 		delete from t_article_comment where articleId= #{articleId}
 	</delete>
 </mapper>

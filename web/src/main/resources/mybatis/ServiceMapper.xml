@@ -21,5 +21,9 @@
         <result property="createTime" column="createTime" javaType="java.util.Date" />
         <result property="updateTime" column="updateTime" javaType="java.util.Date" />
     </resultMap>
-	
+
+    <insert id="saveService" parameterMap="Service">
+        insert into t_service(serviceId, serviceName, serviceDesc, createTime, serviceCategoryId) values(
+        #{serviceId}, #{serviceName}, #{serviceDesc}, #{createTime, #{serviceCategory.service})
+    </insert>
 </mapper>
