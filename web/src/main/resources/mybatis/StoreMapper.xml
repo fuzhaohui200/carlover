@@ -30,13 +30,50 @@
         <result property="createTime" column="createTime" javaType="java.util.Date" />
         <result property="updateTime" column="updateTime" javaType="java.util.Date" />
         <association property="store" column="storeId" resultMap="NSStore.store" />
+        <association property="user" column="userId" resultMap="NSUser.user" />
     </resultMap>
 
     <insert id="saveStore" parameterType="Store">
         insert into t_store(storeId, parentStoreId, phone, contact, storeCert,
         alipay, tenpay, isOfflineStore, addressId) values (
-         #{storeId}, #{parentStoreId}, #{phone}, #{contact}, #{storeCert}, #{alipay},
-         #{tenpay}, #{isOfflineStore}, #{addressId})
+        #{storeId}, #{parentStoreId}, #{phone}, #{contact}, #{storeCert}, #{alipay},
+        #{tenpay}, #{isOfflineStore}, #{addressId})
     </insert>
 
+    <select id="queryStoreById" resultMap="store">
+        select * from t_store ts inner join t_user tu on ts.storeId = tu.userId left join t_address ta
+        on ts.addressId = ta.addressId where ts.storeId = #{storeId}
+    </select>
+
+    <select id="queryStoreByParams" resultMap="store">
+        select * from t_store ts inner join t_user tu on ts.storeId = tu.userId left join t_address ta
+        on ts.addressId = ta.addressId where ts.storeId = #{storeId}
+    </select>
+
+    <update id="updateStore" parameterType="Store">
+        update t_store set parentStoreId = #{parentStoreId}, phone = #{phone}, contact = #{contact}, phone = #{phone},
+        storeCert = #{storeCert}, alipay = #{alipay}, tenpay = #{tenpay} where storeId = #{storeId}
+    </update>
+
+    <delete id="deleteStore">
+        delete from t_store where storeId = #{storeId}
+    </delete>
+
+    <insert id="saveStoreComment" parameterType="StoreComment">
+        insert into t_store_comment(storeId, comment, star, praise, createTime) values(
+        #{storeId}, #{comment}, #{star}, #{praise}, #{createTime})
+    </insert>
+
+    <select id="queryStoreCommentById" resultMap="storeComment">
+        select * from t_store_comment tsc inner join t_store ts on tsc.storeId = ts.storeId inner join t_
+    </select>
+    
+    <update id="updateStoreComment">
+        update t_store_comment set star = #{star}, praise = #{praise}, updateTime = #{updateTime}
+        where storeCommentId = #{storeCommentId}
+    </update>
+
+    <delete id="deleteStoreComment">
+        delete from t_store_comment where storeCommentId = #{storeCommentId}
+    </delete>
 </mapper>

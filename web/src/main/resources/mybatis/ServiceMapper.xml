@@ -26,4 +26,42 @@
         insert into t_service(serviceId, serviceName, serviceDesc, createTime, serviceCategoryId) values(
         #{serviceId}, #{serviceName}, #{serviceDesc}, #{createTime, #{serviceCategory.service})
     </insert>
+
+    <select id="queryServiceById" resultMap="service">
+        select * from t_service where serviceId = #{serviceId}
+    </select>
+
+    <select id="queryServiceByCategory" resultMap="service">
+        select * from t_service ts where ts.serviceCategoryId = #{serviceCategoryId}
+    </select>
+
+    <update id="updateService" parameterType="Service">
+        update t_service set serviceName = #{serviceName}, serviceDesc = #{serviceDesc}, updateTime = #{updateTime}
+        where serviceId = #{serviceId}
+    </update>
+
+    <delete id="deleteService">
+        delete from t_service where serviceId = #{serviceId}
+    </delete>
+
+    <insert id="saveServiceCategory" parameterType="serviceCategory">
+        insert into t_service_category(serviceCategory, parentServiceCategoryId, serviceCategoryName, serviceCategoryDesc,
+        createTime) values(#{serviceCategory}, #{parentServiceCategoryId}, #{serviceCategoryName}, #{serviceCategoryDesc},
+        #{createTime})
+    </insert>
+
+    <select id="queryServiceCategory" resultMap="serviceCategory">
+        select * from t_service_category where serviceCategoryId = #{serviceCategoryId}
+    </select>
+
+    <update id="updateServiceCategory" parameterType="ServiceCategory">
+        update t_service_category set serviceCategoryName = #{serviceCategoryName}, parentServiceCategoryId = #{parentServiceCategoryId},
+        serviceCategoryDesc = #{serviceCategoryDesc}, updateTime = #{updateTime}
+        where serviceCategoryId = #{serviceCategoryId}
+    </update>
+
+    <delete id="deleteServiceCategoryId">
+        delete from t_service_category where serviceCategoryId = #{serviceCategoryId}
+    </delete>
+
 </mapper>

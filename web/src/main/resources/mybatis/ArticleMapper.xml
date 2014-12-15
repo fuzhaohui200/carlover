@@ -16,13 +16,13 @@
 
 	<resultMap type="ArticleComment"  id="articleComment" >
 		<id property="articleId" column="articleId" javaType="java.lang.String" />
-		<id property="userId" column="userId" javaType="java.lang.String" />
+		<id property="userId" column="userInfoId" javaType="java.lang.String" />
 		<result property="comment" column="comment" javaType="java.lang.String" />
 		<result property="star" column="star" javaType="java.lang.Integer" />
 		<result property="praise" column="praise" javaType="java.lang.Integer" />
         <result property="createTime" column="createTime" javaType="java.util.Date" />
         <result property="updateTime" column="updateTime" javaType="java.util.Date" />
-		<association property="user" column="userId" resultMap="NSUser.user"></association>
+		<association property="userInfo" column="userInfoId" resultMap="NSUser.userInfo"></association>
 	</resultMap>
 
 	<insert id="saveArticle" parameterType="Article">

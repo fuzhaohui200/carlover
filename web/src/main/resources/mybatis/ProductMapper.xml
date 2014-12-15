@@ -93,6 +93,4 @@
     <select id="queryProductCategory" resultMap="productCategory">
         select * from t_product_category tpc
     </select>
-
-
 </mapper>

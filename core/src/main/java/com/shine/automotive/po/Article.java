@@ -9,7 +9,7 @@ import java.util.Date;
 public class Article {
 
     private String articleId;
-    private User user; // 作者用户ID
+    private UserInfo userInfo; // 作者用户ID
     private String title; // 标题
     private String content; // 内容
     private String mark; // 标签
@@ -24,12 +24,12 @@ public class Article {
         this.articleId = articleId;
     }
 
-    public User getUserI() {
-        return user;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setUserId(User user) {
-        this.user = user;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public String getTitle() {

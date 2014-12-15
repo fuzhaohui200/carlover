@@ -8,9 +8,8 @@ import java.util.Date;
  */
 public class StoreComment {
 
-    private String storeId; // 店ID
     private Store store; // 店
-    private User user; // 用户
+    private UserInfo userInfo; // 用户
     private String comment; // 评论内容
     private int star; // 几星
     private int praise; // 点赞
@@ -25,12 +24,12 @@ public class StoreComment {
         this.store = store;
     }
 
-    public User getUser() {
-        return user;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public String getComment() {
