@@ -38,6 +38,55 @@ public class ServiceBus {
     @Resource
     private StoreCommentService storeCommentService;
 
+    public UserService getUserService() {
+        return userService;
+    }
 
+    public StoreService getStoreService() {
+        return storeService;
+    }
 
+    public ProductService getProductService() {
+        return productService;
+    }
+
+    public AddressService getAddressService() {
+        return addressService;
+    }
+
+    public ArticleService getArticleService() {
+        return articleService;
+    }
+
+    public ArticleCommentService getArticleCommentService() {
+        return articleCommentService;
+    }
+
+    public BrandService getBrandService() {
+        return brandService;
+    }
+
+    public CarService getCarService() {
+        return carService;
+    }
+
+    public OrderService getOrderService() {
+        return orderService;
+    }
+
+    public ProductCategoryService getProductCategoryService() {
+        return productCategoryService;
+    }
+
+    public ScoreService getScoreService() {
+        return scoreService;
+    }
+
+    public ServiceCategoryService getServiceCategoryService() {
+        return serviceCategoryService;
+    }
+
+    public StoreCommentService getStoreCommentService() {
+        return storeCommentService;
+    }
 }

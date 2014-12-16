@@ -1,8 +1,13 @@
 package com.shine.automotive.controller;
 
+import com.shine.automotive.ServiceBus;
 import com.shine.automotive.base.controller.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * Created by boka on 14-11-25.
@@ -11,4 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/order", produces = { "application/json;charset=UTF-8" })
 @RestController
 public class OrderController extends BaseController {
+
+    @Resource
+    private ServiceBus serviceBus;
+
+    @RequestMapping(value = "addOrder", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addOrder(){
+        return writeResult("保存成功");
+    }
+
+    @RequestMapping(value = "editOrder", method = RequestMethod.POST)
+    @ResponseBody
+    public Object editOrder(){
+        return writeResult("修改成功");
+    }
+
+    @RequestMapping(value = "deleteOrder", method = RequestMethod.POST)
+    @ResponseBody
+    public Object deleteOrder() {
+        return writeResult("删除成功");
+    }
 }
