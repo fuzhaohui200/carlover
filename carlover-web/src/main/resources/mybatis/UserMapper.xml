@@ -83,10 +83,10 @@
 		sex = #{sex}, nickName = #{nickName}, enName= #{enName}, level = #{level}, totalPraise = #{totalPraise},
 		totalMount = #{totalMount}, totalScore = #{totalScore}
 		where userInfoId = #{userInfoId}
-	</update>
+	</update>-->
 	
 	<select id="queryUserInfo" resultMap="UserInfo">
 		select ui.*, u.*  from t_user_info ui inner join t_user u on ui.userInfoId = u.userId where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
-	</select>-->
+	</select>
 
 </mapper>

@@ -12,5 +12,5 @@ release.properties
 
 
 *.*.iml
-core/core.iml
-web/web.iml
+carlover-core/core.iml
+carlover-web/web.iml
