@@ -78,15 +78,18 @@
 		#{userInfoId}, #{realName}, #{signature}, #{birthday}, #{sex}, #{nickName}, #{enName}, #{level}, #{totalPraise}, #{totalMount}, #{totalScore})
 	</insert>
 
-	<!--<update id="updateUserInfo" parameterType="UserInfo">
+	<select id="queryUserInfo" resultMap="UserInfo">
+		select ui.*, u.*  from t_user_info ui inner join t_user u on ui.userInfoId = u.userId
+		where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
+	</select>
+
+	<update id="updateUserInfo" parameterType="UserInfo">
 		update t_user_info set realName = #{realName}, signature = #{signature}, birthday = #{birthday},
 		sex = #{sex}, nickName = #{nickName}, enName= #{enName}, level = #{level}, totalPraise = #{totalPraise},
 		totalMount = #{totalMount}, totalScore = #{totalScore}
 		where userInfoId = #{userInfoId}
-	</update>-->
+	</update>
 	
-	<select id="queryUserInfo" resultMap="UserInfo">
-		select ui.*, u.*  from t_user_info ui inner join t_user u on ui.userInfoId = u.userId where u.username=#{userName} or u.email=#{email} or u.phone=#{email}
-	</select>
+
 
 </mapper>

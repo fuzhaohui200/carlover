@@ -1,5 +1,6 @@
 package com.shine.automotive.controller;
 
+import com.shine.automotive.base.controller.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,5 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequestMapping(value = "/payment", produces = { "application/json;charset=UTF-8" })
 @RestController
-public class PaymentController {
+public class PaymentController extends BaseController {
 }
