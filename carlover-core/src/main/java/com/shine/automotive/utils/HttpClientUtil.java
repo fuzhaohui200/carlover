@@ -1,5 +1,6 @@
 package com.shine.automotive.utils;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -7,6 +8,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.FileBody;
@@ -120,6 +122,51 @@ public class HttpClientUtil {
 			httpClient.getConnectionManager().shutdown();
 		}
         return null;
+	}
+
+	public static String doPostBody(String url, String params, Map<String, String>headers) {
+		HttpParams httpParams = new BasicHttpParams();
+		HttpConnectionParams.setConnectionTimeout(httpParams, 20000); // 连接时间
+		HttpConnectionParams.setSoTimeout(httpParams, 300000); // 传输超时时间
+		HttpConnectionParams.setSocketBufferSize(httpParams, 81920);
+		HttpProtocolParams.setContentCharset(httpParams, "UTF-8");
+		HttpProtocolParams.setHttpElementCharset(httpParams, "UTF-8");
+		DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
+		httpClient.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET, Charset.forName("UTF-8"));
+		HttpResponse resp;
+		try {
+			HttpPost postRequest = new HttpPost(url);
+			if(headers != null) {
+				Set<Entry<String, String>> entrySet = headers.entrySet();
+				for(Entry<String, String> entry : entrySet) {
+					postRequest.setHeader(entry.getKey(), entry.getValue());
+				}
+			}
+
+			StringEntity entity = new StringEntity(params);
+			entity.setContentType("application/json");
+			postRequest.setEntity(entity);
+
+			resp = httpClient.execute(postRequest);
+			if (resp.getStatusLine().getStatusCode() == 200) {
+				BufferedReader br = new BufferedReader(new InputStreamReader(resp.getEntity().getContent(), "UTF-8"));
+				String output;
+				StringBuilder content = new StringBuilder();
+				while ((output = br.readLine()) != null) {
+					content.append(output);
+				}
+				return content.toString();
+			}
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			httpClient.getConnectionManager().shutdown();
+		}
+		return null;
 	}
 	
 	public static String doPostBigParam(String url, Map<String, String> params, Map<String, String>headers) {
