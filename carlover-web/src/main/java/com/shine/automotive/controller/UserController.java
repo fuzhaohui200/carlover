@@ -3,6 +3,7 @@ package com.shine.automotive.controller;
 import com.shine.automotive.ServiceBus;
 import com.shine.automotive.base.controller.BaseController;
 import net.sf.json.JSONObject;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -11,7 +12,7 @@ import javax.annotation.Resource;
  * Created by boka on 14-11-25.
  * 用户接口服务
  */
-@RequestMapping(value = "/user", produces = {"application/json;charset=UTF-8" })
+@RequestMapping(value = "/user", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
 @RestController
 public class UserController extends BaseController {
 
