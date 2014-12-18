@@ -1,4 +1,4 @@
-package com.shine.automotive.base.util;
+package com.shine.automotive.db;
 
 import java.util.ArrayList;
 import java.util.List;

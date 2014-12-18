@@ -9,28 +9,26 @@ import java.util.Random;
 public class RandomGenerateUtil {
 	private static Random getR = new Random();
 
-	public static String getRandomS() {
-		RandomGenerateUtil p = new RandomGenerateUtil();
+	public static String getRandomS(int type, int length) {
 		String s = "";
-		int n = 0;
-		int m = 0;
-		for (int i = 0; i < 6; i++) {
-			if (n == 3) {
-				s += p.getSz();
-				m++;
-			} else if (m == 3) {
-				s += p.getZm();
-				n++;
-			} else {
-				int ri = getR.nextInt(2);
-				s += ri == 0 ? p.getSz() : p.getZm();
-			}
+		switch (type) {
+			case 1:
+				for (int i = 0; i < length; i++) {
+					s += getSz();
+				}
+				break;
+			default:
+				for (int i = 0; i < length; i++) {
+					int ri = getR.nextInt(2);
+					s += ri == 0 ? getSz() : getZm();
+				}
+				break;
 		}
 		return s;
 	}
 
 	// 随机数字的字母，区分大小写
-	private String getZm() {
+	private static String getZm() {
 		char sSS = (char) (getR.nextInt(26) + 97);// 小写字母97--122=a---z
 		char sBs = (char) (getR.nextInt(26) + 65);// 大写65--90=A----Z
 		char[] stemp = { sSS, sBs };
@@ -40,14 +38,14 @@ public class RandomGenerateUtil {
 	}
 
 	// 随机数字的字符串
-	private String getSz() {
+	private static String getSz() {
 		int getI = getR.nextInt(10) + 48;// 数字48--57=0---9
 		String sI = String.valueOf((char) getI);
 		return sI;
 	}
 	
-	/*public static void main(String[] args) {
-		String print = getRandomS();
+	public static void main(String[] args) {
+		String print = getRandomS(1, 6);
 		System.out.println(print);
-	}*/
+	}
 }
