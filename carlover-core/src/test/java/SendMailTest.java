@@ -1,4 +1,4 @@
-import com.shine.automotive.utils.SendMailUtil;
+import com.shine.carlover.utils.SendMailUtil;
 import org.junit.Test;
 
 import javax.mail.MessagingException;

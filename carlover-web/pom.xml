@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>carlover</artifactId>
-        <groupId>com.shine.automotive</groupId>
+        <groupId>com.shine.carlover</groupId>
         <version>${project-version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.shine.automotive</groupId>
+            <groupId>com.shine.carlover</groupId>
             <artifactId>carlover-core</artifactId>
             <version>${project-version}</version>
         </dependency>

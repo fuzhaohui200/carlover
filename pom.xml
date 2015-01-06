@@ -12,7 +12,7 @@
         <project-version>1.0-SNAPSHOT</project-version>
     </properties>
 
-    <groupId>com.shine.automotive</groupId>
+    <groupId>com.shine.carlover</groupId>
     <artifactId>carlover</artifactId>
     <packaging>pom</packaging>
     <version>${project-version}</version>

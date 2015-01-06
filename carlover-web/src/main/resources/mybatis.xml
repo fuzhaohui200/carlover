@@ -13,27 +13,27 @@
 	</settings>
 
 	<typeAliases >
-		<typeAlias type="com.shine.automotive.po.Address" alias="Address"/>
-		<typeAlias type="com.shine.automotive.po.Article" alias="Article"/>
-		<typeAlias type="com.shine.automotive.po.ArticleComment" alias="ArticleComment"/>
-		<typeAlias type="com.shine.automotive.po.Brand" alias="Brand"/>
-		<typeAlias type="com.shine.automotive.po.Car" alias="Car"/>
-		<typeAlias type="com.shine.automotive.po.CarRecord" alias="CarRecord"/>
-		<typeAlias type="com.shine.automotive.po.Order" alias="Order"/>
-		<typeAlias type="com.shine.automotive.po.Product" alias="Product"/>
-		<typeAlias type="com.shine.automotive.po.ProductCategory" alias="ProductCategory"/>
-		<typeAlias type="com.shine.automotive.mongo.ProductThumbnails" alias="ProductThumbnails"/>
-		<typeAlias type="com.shine.automotive.po.Service" alias="Service"/>
-		<typeAlias type="com.shine.automotive.po.ServiceCategory" alias="ServiceCategory"/>
-		<typeAlias type="com.shine.automotive.po.ShopCart" alias="ShopCart"/>
-		<typeAlias type="com.shine.automotive.po.Store" alias="Store"/>
-		<typeAlias type="com.shine.automotive.po.StoreComment" alias="StoreComment"/>
-		<typeAlias type="com.shine.automotive.po.User" alias="User"/>
-		<typeAlias type="com.shine.automotive.po.UserInfo" alias="UserInfo"/>
+		<typeAlias type="com.shine.carlover.po.Address" alias="Address"/>
+		<typeAlias type="com.shine.carlover.po.Article" alias="Article"/>
+		<typeAlias type="com.shine.carlover.po.ArticleComment" alias="ArticleComment"/>
+		<typeAlias type="com.shine.carlover.po.Brand" alias="Brand"/>
+		<typeAlias type="com.shine.carlover.po.Car" alias="Car"/>
+		<typeAlias type="com.shine.carlover.po.CarRecord" alias="CarRecord"/>
+		<typeAlias type="com.shine.carlover.po.Order" alias="Order"/>
+		<typeAlias type="com.shine.carlover.po.Product" alias="Product"/>
+		<typeAlias type="com.shine.carlover.po.ProductCategory" alias="ProductCategory"/>
+		<typeAlias type="com.shine.carlover.mongo.ProductThumbnails" alias="ProductThumbnails"/>
+		<typeAlias type="com.shine.carlover.po.Service" alias="Service"/>
+		<typeAlias type="com.shine.carlover.po.ServiceCategory" alias="ServiceCategory"/>
+		<typeAlias type="com.shine.carlover.po.ShopCart" alias="ShopCart"/>
+		<typeAlias type="com.shine.carlover.po.Store" alias="Store"/>
+		<typeAlias type="com.shine.carlover.po.StoreComment" alias="StoreComment"/>
+		<typeAlias type="com.shine.carlover.po.User" alias="User"/>
+		<typeAlias type="com.shine.carlover.po.UserInfo" alias="UserInfo"/>
 	</typeAliases>
 	
 	<plugins>
-		<plugin interceptor="com.shine.automotive.base.pager.interceptor.PagerInterceptor">
+		<plugin interceptor="com.shine.carlover.base.pager.interceptor.PagerInterceptor">
 		</plugin>
 	</plugins>
 </configuration>
